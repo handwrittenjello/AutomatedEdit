@@ -1,5 +1,7 @@
 import requests
-website_url = requests.get('https://en.wikipedia.org/wiki/UFC_240')
+print('Which number PPV UFC Event would you like to pull Results Information for?')
+ufcInput = input()
+website_url = requests.get('https://en.wikipedia.org/wiki/UFC_' + ufcInput)
 html = website_url.content
 
 from bs4 import BeautifulSoup
