@@ -4,13 +4,9 @@ html = website_url.content
 
 from bs4 import BeautifulSoup
 soup = BeautifulSoup(html, 'lxml')
-#print(soup.prettify())
-
-#allTable = str(soup.findAll('table'))
-#print(soup.prettify(allTable))
 
 resultsTable = soup.find('table', class_ = 'toccolours')
-#print(soup.prettify(resultsTable))
+
 
 weightClass = []
 fighterWinner = []
