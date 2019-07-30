@@ -111,3 +111,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#Seeding data to table
+import sqlalchemy
+engine = sqlalchemy.create_engine('sqlite:///pythondatabase.db', echo=False)
+df.to_sql('fightcard', con=engine, if_exists='append')
