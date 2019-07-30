@@ -1,8 +1,8 @@
 import requests
 print('You will import all fight card results to the database.  Which Card would you like to start with?')
-firstCard = input()
+firstCard = int(input())
 print('Which is the last card?')
-lastCard = input()
+lastCard = int(input())
 for x in range(firstCard,lastCard):
     ufcInput = str(x)
     website_url = requests.get('https://en.wikipedia.org/wiki/UFC_' + ufcInput)
