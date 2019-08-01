@@ -1,12 +1,13 @@
 from django.contrib import admin
 
-from .models import *
+
+# Register your models here.
+from .models import Question, Choice, Fightcard
 
 
-class ChoiceInline(admin.TabularInline):
+class ChoiceInline(admin.StackedInline):
     model = Choice
     extra = 3
-
 
 
 class QuestionAdmin(admin.ModelAdmin):
@@ -19,10 +20,10 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
     search_fields = ['question_text']
 
-#class FightcardAdmin(admin.ModelAdmin):
-#	model = UFCCard
-#	list_display = ('winner')
+class Fightcard(admin.ModelAdmin):
+    model = Fightcard
+    list_display = ('weight_class', 'winner', 'def_field', 'loser', 'won_by', 'round', 'time', 'card')
 
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Choice,)
-#admin.site.register(FightcardAdmin,)
+admin.site.register(Choice)
+#admin.site.register(Fightcard)

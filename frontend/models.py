@@ -118,16 +118,21 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-#class UFCCard(models.Model):
-#    index = models.IntegerField(db_column='Index', blank=True, null=True, default='')  # Field name made lowercase.
-#    ufc_card = models.IntegerField(db_column='Card', blank=True, null=True, default='')  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    
-#    def winner(self):
-#        return self.ufc_card
+class Fightcard(models.Model):
+    index = models.IntegerField(db_column='Index', blank=True, null=True)  # Field name made lowercase.
+    weight_class = models.TextField(db_column='Weight Class', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    winner = models.TextField(db_column='Winner', blank=True, null=True)  # Field name made lowercase.
+    def_field = models.TextField(db_column='def', blank=True, null=True)  # Field renamed because it was a Python reserved word.
+    loser = models.TextField(db_column='Loser', blank=True, null=True)  # Field name made lowercase.
+    won_by = models.TextField(db_column='Won By', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    round = models.TextField(db_column='Round', blank=True, null=True)  # Field name made lowercase.
+    time = models.TextField(db_column='Time', blank=True, null=True)  # Field name made lowercase.
+    notes = models.TextField(db_column='Notes', blank=True, null=True)  # Field name made lowercase.
+    card = models.TextField(db_column='Card', blank=True, null=True)  # Field name made lowercase.
 
-#      class Meta:
-#        managed = False
-#        db_table = 'fightcard_card'
+    class Meta:
+        managed = False
+        db_table = 'fightcard'
 
 
 class PollsChoice(models.Model):
