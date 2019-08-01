@@ -26,6 +26,7 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
+
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
