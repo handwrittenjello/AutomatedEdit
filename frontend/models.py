@@ -135,11 +135,12 @@ class Fightcard(models.Model):
         db_table = 'fightcard'
 
 
-class PollsChoice(models.Model):
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField()
-    question = models.ForeignKey('PollsQuestion', models.DO_NOTHING)
-
+class Choice(models.Model):
+    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+    ufcCard = models.CharField(db_column='Card',max_length=200)
+    votes = models.IntegerField(default=0)
+    def __str__(self):
+        return self.choice_text
     class Meta:
         managed = False
         db_table = 'polls_choice'
