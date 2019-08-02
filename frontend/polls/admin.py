@@ -12,13 +12,13 @@ class ChoiceInline(admin.StackedInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['Winner']}),
+        (None,               {'fields': ['WonBy']}),
         
     ]
     inlines = [ChoiceInline]
  #   list_display = ('question_text', 'pub_date', 'was_published_recently')
  #   list_filter = ['Winner']
-    search_fields = ['question_text']
+    search_fields = ['polls_question']
 
 class Fightcard(admin.ModelAdmin):
     model = Fightcard
