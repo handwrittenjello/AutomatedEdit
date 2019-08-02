@@ -4,14 +4,26 @@ from django.utils import timezone
 
 
 # Create your models here.
+class cardkey(models.Model):
+    cardkey = models.CharField(db_column='card_id',max_length=200)
 
+    class Meta:
+        managed = False
+        db_table = 'polls_question'
 class Question(models.Model):
 #    question_text = models.CharField(max_length=200)
-    card = models.CharField(db_column='Card',max_length=200)
+    card = models.ForeignKey(cardkey,on_delete=models.CASCADE
+    )
  #   pub_date = models.DateTimeField('date published')
     def __str__(self):
         return self.card
-    winner = models.CharField(db_column='Winner',max_length=200)
+    winner = models.CharField(db_column='Winner',max_length=200,)
+    weightclass = models.CharField(db_column='WeightClass',max_length=200)
+    loser = models.CharField(db_column='Loser',max_length=200)
+    defeat = models.CharField(db_column='def',max_length=200)
+    wonby = models.CharField(db_column='WonBy',max_length=200)
+    roundin = models.CharField(db_column='Round',max_length=200)
+    time = models.CharField(db_column='Time',max_length=200)
  #   winner = models.CharField(db_column='Winner',max_length=200)
 
  #   def was_published_recently(self):
@@ -28,7 +40,13 @@ class Question(models.Model):
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     winner = models.CharField(db_column='Winner',max_length=200)
-    WeightClass = models.CharField(db_column='WeightClass',max_length=200)
+    weightclass = models.CharField(db_column='WeightClass',max_length=200)
+    loser = models.CharField(db_column='Loser',max_length=200)
+    defeat = models.CharField(db_column='def',max_length=200)
+    wonby = models.CharField(db_column='WonBy',max_length=200)
+    roundin = models.CharField(db_column='Round',max_length=200)
+    time = models.CharField(db_column='Time',max_length=200)
+
 #    votes = models.IntegerField(default=0)
 #    def __int__(self):
 #        return self.ufcCard

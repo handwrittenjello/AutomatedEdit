@@ -5,7 +5,7 @@ from django.contrib import admin
 from .models import Question, Choice, Fightcard
 
 
-class ChoiceInline(admin.StackedInline):
+class ChoiceInline(admin.TabularInline):
     model = Choice
 #    extra = 3
 
@@ -13,12 +13,20 @@ class ChoiceInline(admin.StackedInline):
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': [('card')]}),
+        (None,				 {'fields': [('weightclass')]}),
         (None,				 {'fields': [('winner')]}),
+        (None,				 {'fields': [('defeat')]}),
+        (None,				 {'fields': [('loser')]}),
+        (None,				 {'fields': [('wonby')]}),
+        (None,				 {'fields': [('roundin')]}),
+        (None,				 {'fields': [('time')]}),
+
         
     ]
     inlines = [ChoiceInline]
-    list_display = ('card', 'winner')
- #   list_filter = ['Winner']
+    list_display = ('card', 'weightclass', 'winner', 'defeat', 'loser',
+    		'wonby', 'roundin', 'time')
+#    list_filter = ['card']
     search_fields = ['card']
 
 class Fightcard(admin.ModelAdmin):
