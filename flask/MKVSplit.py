@@ -3,6 +3,24 @@ import subprocess
 import webbrowser
 from flask import Flask, request, render_template
 
+#write HTML File
+html_str = """
+<p>UFC Fight Card</p>
+
+<form action = '/ufc' method = "post">
+Filename: <input type = "text" name = "ufcCard"><br />
+How many Fights?: <input type = "text" name = "ufcFightNumber"><br />
+First Fight Start?: <input type = "text" name = "firstFightStart"><br />
+First Fight End: <input type = "text" name = "firstFightEnd"><br />
+<input type = "submit" value = "Submit" />
+</form>
+
+"""
+
+with open("./templates/UFC.html", "w") as file:
+    file.write(html_str)
+
+#Run Flask
 app = Flask(__name__)
 
 
@@ -15,14 +33,14 @@ def index():
 
 @app.route('/ufc', methods=['POST'])
 def foo():
-    bar = request.form['ufcCard']
+    card = request.form['ufcCard']
     firstFightStartInput = request.form['firstFightStart']
     firstFightStart = firstFightStartInput[:2] + ':' + firstFightStartInput[2:4] + ':' + firstFightStartInput[4:6]
 
     firstFightEndInput = request.form['firstFightEnd']
     firstFightEnd = firstFightEndInput[:2] + ':' + firstFightEndInput[2:4] + ':' + firstFightEndInput[4:6]
 
-    runMKV = subprocess.call(['mkvmerge','-o', 'ufc1' + 'split.mkv', 'ufc1' + '.mkv', '--split', 'timestamps:'+ firstFightStart +','+ firstFightEnd ])
+    runMKV = subprocess.call(['mkvmerge','-o', card + 'split.mkv', card + '.mkv', '--split', 'timestamps:'+ firstFightStart +','+ firstFightEnd ])
 
     return 'You hav envtered Filename %s <br/> <a href="/">Back Home</a>' % (bar), runMKV;   
 
