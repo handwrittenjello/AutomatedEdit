@@ -4,6 +4,7 @@ import webbrowser
 from flask import Flask, request, render_template
 import requests
 import numpy as np
+import os
 
 #Pulling UFC Data
 print('You will import all fight card results to the database.  Which Card would you like to start with?')
@@ -151,9 +152,13 @@ def foo():
     runMKV = subprocess.call(['mkvmerge','-o', card + 'split.mkv', card + '.mkv', '--split', 'timestamps:'+ firstFightStart +','+ firstFightEnd + ',' + secondFightStart + ',' + secondFightEnd +
     ',' +thirdFightStart + ',' + thirdFightEnd + ',' + fourthFightStart + ',' + fourthFightEnd + ',' + fifthFightStart + ',' + fifthFightEnd])
 
+    for i in range(1,11,2):
+        os.remove(card + 'split-00' + str(i) + '.mkv')
     return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV;   
 
 if __name__ == '__main__':
     app.run()
+
+
 
 
