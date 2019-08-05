@@ -158,7 +158,17 @@ def foo():
     for i in range(1,11,2):
         os.remove(card + 'split-00' + str(i) + '.mkv')
     
-    printdf = print(df.loc[4]['Winner'])
+    fightOneWinner = df.loc[4]['Winner']
+    fightOneLoser = df.loc[4]["Loser"]
+    fightTwoWinner = df.loc[3]['Winner']
+    fightTwoLoser = df.loc[3]['Loser']
+    fightThreeWinner = df.loc[2]['Winner']
+    fightThreeLoser = df.loc[2]['Loser']
+    fightFourWinner = df.loc[1]['Winner']
+    fightFourLoser = df.loc[1]['Loser']
+    fightFiveWinner = df.loc[0]['Winner']
+    fightFiveLoser = df.loc[0]['Loser']
+    
     return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV, printdf;   
 
 if __name__ == '__main__':
