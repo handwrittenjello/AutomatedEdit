@@ -51,6 +51,8 @@ df['Time'] = victoryTime
 df['Notes'] = notes
 df['Card'] = firstCard
 df = df.replace('\n','', regex=True)
+df = df.iloc[::-1]
+df = df.tail(5)
 print (df)
 
 
@@ -66,8 +68,7 @@ html_str = """
 </style>
     <meta charset="UTF-8">
 </head>
-<div class="container">
-<div class="floatLeft">
+
 
 <body>
     <table id="FightCard"
@@ -75,43 +76,30 @@ html_str = """
 {% for table in tables %}
             {{ table|safe }}
 {% endfor %}
-</div>
-<div class="floatRight">
-<style>
-table, th, td {
-  border: 1px solid black;
-}
-</style>
-  <table style="width:100%">
-  <caption>Times</caption>
-  <tr>
-    <th>Fight Start</th>
-    <th>Fight End</th>
-  </tr>
-  <tr>
-    <td><input type = "text" name = "firstFightStart"</td>
-    <td><input type = "text" name = "secondFightEnd"</td>
-  </tr>
-  <tr>
-    <td><input type = "text" name = "firstFightStart"</td>
-    <td><input type = "text" name = "secondFightEnd"</td>
-  </tr>
-</table> 
-</div>
-</div>
+
+
 
 
 <form action = '/ufc' method = "post">
 Filename: <input type = "text" name = "ufcCard"><br />
-How many Fights?: <input type = "text" name = "ufcFightNumber"><br />
-First Fight Start?: <input type = "text" name = "firstFightStart"><br />
+First Fight Start: <input type = "text" name = "firstFightStart"><br />
 First Fight End: <input type = "text" name = "firstFightEnd"><br />
+Second Fight Start: <input type = "text" name = "secondFightStart"><br />
+Second Fight End: <input type = "text" name = "secondFightEnd"><br />
+Third Fight Start: <input type = "text" name = "thirdFightStart"><br />
+Third Fight End: <input type = "text" name = "thirdFightEnd"><br />
+Fourth Fight Start: <input type = "text" name = "fourthFightStart"><br />
+Fourth Fight End: <input type = "text" name = "fourthFightEnd"><br />
+Fifth Fight Start: <input type = "text" name = "fifthFightStart"><br />
+Fifth Fight End: <input type = "text" name = "fifthFightEnd"><br />
+
 <input type = "submit" value = "Submit" />
 </form>
 
 </html>
 
 """
+
 
 with open("./templates/UFC.html", "w") as file:
     file.write(html_str)
@@ -136,42 +124,36 @@ def foo():
     firstFightEndInput = request.form['firstFightEnd']
     firstFightEnd = firstFightEndInput[:2] + ':' + firstFightEndInput[2:4] + ':' + firstFightEndInput[4:6]
 
-    runMKV = subprocess.call(['mkvmerge','-o', card + 'split.mkv', card + '.mkv', '--split', 'timestamps:'+ firstFightStart +','+ firstFightEnd ])
+    secondFightStartInput = request.form['secondFightStart']
+    secondFightStart = secondFightStartInput[:2] + ':' + secondFightStartInput[2:4] + ':' + secondFightStartInput[4:6]
 
-    return 'You hav envtered Filename %s <br/> <a href="/">Back Home</a>' % (bar), runMKV;   
+    secondFightEndInput = request.form['secondFightEnd']
+    secondFightEnd = secondFightEndInput[:2] + ':' + secondFightEndInput[2:4] + ':' + secondFightEndInput[4:6]
+
+    thirdFightStartInput = request.form['thirdFightStart']
+    thirdFightStart = thirdFightStartInput[:2] + ':' + thirdFightStartInput[2:4] + ':' + thirdFightStartInput[4:6]
+
+    thirdFightEndInput = request.form['thirdFightEnd']
+    thirdFightEnd = thirdFightEndInput[:2] + ':' + thirdFightEndInput[2:4] + ':' + thirdFightEndInput[4:6]
+
+    fourthFightStartInput = request.form['fourthFightStart']
+    fourthFightStart = fourthFightStartInput[:2] + ':' + fourthFightStartInput[2:4] + ':' + fourthFightStartInput[4:6]
+
+    fourthFightEndInput = request.form['fourthFightEnd']
+    fourthFightEnd = fourthFightEndInput[:2] + ':' + fourthFightEndInput[2:4] + ':' + fourthFightEndInput[4:6]
+
+    fifthFightStartInput = request.form['fifthFightStart']
+    fifthFightStart = fifthFightStartInput[:2] + ':' + fifthFightStartInput[2:4] + ':' + fifthFightStartInput[4:6]
+
+    fifthFightEndInput = request.form['fifthFightEnd']
+    fifthFightEnd = fifthFightEndInput[:2] + ':' + fifthFightEndInput[2:4] + ':' + fifthFightEndInput[4:6]
+
+    runMKV = subprocess.call(['mkvmerge','-o', card + 'split.mkv', card + '.mkv', '--split', 'timestamps:'+ firstFightStart +','+ firstFightEnd + ',' + secondFightStart + ',' + secondFightEnd +
+    ',' +thirdFightStart + ',' + thirdFightEnd + ',' + fourthFightStart + ',' + fourthFightEnd + ',' + fifthFightStart + ',' + fifthFightEnd])
+
+    return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV;   
 
 if __name__ == '__main__':
     app.run()
-#UfcPage = open('UFC Fight Card.html', 'w')
-#filename = 'file:///Users/andrewlittlejohn/projects/AutomatedEdit/' + 'UFC Fight Card.html'
-#webbrowser.open_new_tab(filename)
 
-print('How many fights are on this card?')
-numberOfFights = input()
 
-#if numberOfFights == '5':
-#    print('Please enter the name of the file you would like to edit:')
-#    filenameInput = input()
-#    print('Please enter the start of the First Of 5 Fights')
-#    firstFightStartInput = input()
-#    firstFightStart = firstFightStartInput[:2] + ':' + firstFightStartInput[2:4] + ':' + firstFightStartInput[4:6]
-#    print(firstFightStart)
-#    print('Please enter the end of the First Fight')
-#    firstFightEndInput = input()
-#    firstFightEnd = firstFightEndInput[:2] + ':' + firstFightEndInput[2:4] + ':' + firstFightEndInput[4:6]
-#    print(firstFightEnd)
-#    subprocess.call([r'mkvmerge','-o', filenameInput + 'split.mkv', filenameInput + '.mkv', '--split', 'timestamps:'+firstFightStart+','+firstFightEnd])#
-
-#    #If Fightcard has 6 fights
-#elif numberOfFights == '6':
-#    print('Please enter the name of the file you would like to edit:')
-#    filenameInput = input()
-#    print('Please enter the start of the First of 6 Fights')
-#    firstFightStartInput = input()
-#    firstFightStart = firstFightStartInput[:2] + ':' + firstFightStartInput[2:4] + ':' + firstFightStartInput[4:6]
-#    print(firstFightStart)
-#    print('Please enter the end of the First Fight')
-#    firstFightEndInput = input()
-#    firstFightEnd = firstFightEndInput[:2] + ':' + firstFightEndInput[2:4] + ':' + firstFightEndInput[4:6]
-#    print(firstFightEnd)
-#    subprocess.call([r'mkvmerge','-o', filenameInput + 'split.mkv', filenameInput + '.mkv', '--split', 'timestamps:'+firstFightStart+','+firstFightEnd])

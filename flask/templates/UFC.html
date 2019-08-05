@@ -9,8 +9,7 @@
 </style>
     <meta charset="UTF-8">
 </head>
-<div class="container">
-<div class="floatLeft">
+
 
 <body>
     <table id="FightCard"
@@ -18,37 +17,23 @@
 {% for table in tables %}
             {{ table|safe }}
 {% endfor %}
-</div>
-<div class="floatRight">
-<style>
-table, th, td {
-  border: 1px solid black;
-}
-</style>
-  <table style="width:100%">
-  <caption>Times</caption>
-  <tr>
-    <th>Fight Start</th>
-    <th>Fight End</th>
-  </tr>
-  <tr>
-    <td><input type = "text" name = "firstFightStart"</td>
-    <td><input type = "text" name = "secondFightEnd"</td>
-  </tr>
-  <tr>
-    <td><input type = "text" name = "firstFightStart"</td>
-    <td><input type = "text" name = "secondFightEnd"</td>
-  </tr>
-</table> 
-</div>
-</div>
+
+
 
 
 <form action = '/ufc' method = "post">
 Filename: <input type = "text" name = "ufcCard"><br />
-How many Fights?: <input type = "text" name = "ufcFightNumber"><br />
-First Fight Start?: <input type = "text" name = "firstFightStart"><br />
+First Fight Start: <input type = "text" name = "firstFightStart"><br />
 First Fight End: <input type = "text" name = "firstFightEnd"><br />
+Second Fight Start: <input type = "text" name = "secondFightStart"><br />
+Second Fight End: <input type = "text" name = "secondFightEnd"><br />
+Third Fight Start: <input type = "text" name = "thirdFightStart"><br />
+Third Fight End: <input type = "text" name = "thirdFightEnd"><br />
+Fourth Fight Start: <input type = "text" name = "fourthFightStart"><br />
+Fourth Fight End: <input type = "text" name = "fourthFightEnd"><br />
+Fifth Fight Start: <input type = "text" name = "fifthFightStart"><br />
+Fifth Fight End: <input type = "text" name = "fifthFightEnd"><br />
+
 <input type = "submit" value = "Submit" />
 </form>
 
