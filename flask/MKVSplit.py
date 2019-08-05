@@ -114,6 +114,9 @@ app = Flask(__name__)
 def index():
     return render_template('UFC.html', tables=[df.to_html(classes='data',header='true')], titles=df.columns.values, lists=df.iloc[:5,1:5])
 
+def a():
+    session['dataframe'] = df
+    return redirect(url_for('b'))
 
 
 @app.route('/ufc', methods=['POST'])
@@ -154,10 +157,13 @@ def foo():
 
     for i in range(1,11,2):
         os.remove(card + 'split-00' + str(i) + '.mkv')
-    return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV;   
+    
+    printdf = print(df.loc[4]['Winner'])
+    return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV, printdf;   
 
 if __name__ == '__main__':
     app.run()
+
 
 
 
