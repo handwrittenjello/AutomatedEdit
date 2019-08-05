@@ -99,7 +99,7 @@ wait = WebDriverWait(driver,20)
 ##First Fight
 print('Please select UFC ' + cardTable + ' ' + fightOneWinner + ' vs ' + fightOneLoser)
 wait = WebDriverWait(driver,20)
-driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]/input').send_keys('UFC 239')
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]/input').send_keys('UFC 239 - 1')
 pyautogui.press('enter')
 driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[1]/ul/li[2]/a').click()
 element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]')))
@@ -133,7 +133,7 @@ time.sleep(10)
 #element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div')))
 #driver.find_element_by_xpath('/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div').click()
 wait = WebDriverWait(driver,20)
-driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]/input').send_keys('UFC 239')
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]/input').send_keys('UFC 239 - 2')
 pyautogui.press('enter')
 driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[1]/ul/li[2]/a').click()
 element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]')))
@@ -156,3 +156,102 @@ pyautogui.press('tab')
 pyautogui.press('tab')
 ##Saving
 pyautogui.press('enter')
+
+
+
+##Third Fight
+print('Please select UFC ' + cardTable + ' ' + fightThreeWinner + ' vs ' + fightThreeLoser)
+WebDriverWait(driver, 10)
+time.sleep(10)
+#element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div')))
+#driver.find_element_by_xpath('/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div').click()
+wait = WebDriverWait(driver,20)
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]/input').send_keys('UFC 239 - 3')
+pyautogui.press('enter')
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[1]/ul/li[2]/a').click()
+element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]')))
+tabToEdit = 0
+while tabToEdit <10:
+    pyautogui.press('tab')
+    tabToEdit = tabToEdit +1
+pyautogui.typewrite(fightThreeWinner)
+pyautogui.press('enter')
+pyautogui.typewrite(fightThreeLoser)
+pyautogui.press('enter')
+tabToEdit = 0
+while tabToEdit <4:
+    pyautogui.press('tab')
+    tabToEdit = tabToEdit +1
+#Collections
+pyautogui.typewrite('UFC ' + cardTable)
+pyautogui.press('tab')
+pyautogui.press('tab')
+pyautogui.press('tab')
+##Saving
+pyautogui.press('enter')
+
+
+##Fourth Fight
+print('Please select UFC ' + cardTable + ' ' + fightFourWinner + ' vs ' + fightFourLoser)
+WebDriverWait(driver, 10)
+time.sleep(10)
+#element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div')))
+#driver.find_element_by_xpath('/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div').click()
+wait = WebDriverWait(driver,20)
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]/input').send_keys('UFC 239 - 4')
+pyautogui.press('enter')
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[1]/ul/li[2]/a').click()
+element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]')))
+tabToEdit = 0
+while tabToEdit <10:
+    pyautogui.press('tab')
+    tabToEdit = tabToEdit +1
+pyautogui.typewrite(fightFourWinner)
+pyautogui.press('enter')
+pyautogui.typewrite(fightFourLoser)
+pyautogui.press('enter')
+tabToEdit = 0
+while tabToEdit <4:
+    pyautogui.press('tab')
+    tabToEdit = tabToEdit +1
+#Collections
+pyautogui.typewrite('UFC ' + cardTable)
+pyautogui.press('tab')
+pyautogui.press('tab')
+pyautogui.press('tab')
+##Saving
+pyautogui.press('enter')
+
+
+
+##Fifth Fight
+print('Please select UFC ' + cardTable + ' ' + fightFiveWinner + ' vs ' + fightFiveLoser)
+WebDriverWait(driver, 10)
+time.sleep(10)
+#element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div')))
+#driver.find_element_by_xpath('/html/body/div[1]/div[5]/div/div/div[1]/div/div/div/div[9]/a/div[2]/div').click()
+wait = WebDriverWait(driver,20)
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]/input').send_keys('UFC 239 - 5')
+pyautogui.press('enter')
+driver.find_element_by_xpath('/html/body/div[3]/div/div/div[2]/div[1]/ul/li[2]/a').click()
+element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[3]/div/div/div[2]/div[2]/div/form/div[2]/div/div/div/div/div[1]')))
+tabToEdit = 0
+while tabToEdit <10:
+    pyautogui.press('tab')
+    tabToEdit = tabToEdit +1
+pyautogui.typewrite(fightFiveWinner)
+pyautogui.press('enter')
+pyautogui.typewrite(fightFiveLoser)
+pyautogui.press('enter')
+tabToEdit = 0
+while tabToEdit <4:
+    pyautogui.press('tab')
+    tabToEdit = tabToEdit +1
+#Collections
+pyautogui.typewrite('UFC ' + cardTable)
+pyautogui.press('tab')
+pyautogui.press('tab')
+pyautogui.press('tab')
+##Saving
+pyautogui.press('enter')
+
