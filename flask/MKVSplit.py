@@ -113,11 +113,11 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('UFC.html', tables=[df.to_html(classes='data',header='true')], titles=df.columns.values, lists=df.iloc[:5,1:5])
-
+"""
 def a():
     session['dataframe'] = df
     return redirect(url_for('b'))
-
+"""
 
 @app.route('/ufc', methods=['POST'])
 def foo():
@@ -168,8 +168,10 @@ def foo():
     fightFourLoser = df.loc[1]['Loser']
     fightFiveWinner = df.loc[0]['Winner']
     fightFiveLoser = df.loc[0]['Loser']
-    
-    return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV, printdf;   
+
+    printtest = print(fightOneLoser)
+
+    return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV, printtest;   
 
 if __name__ == '__main__':
     app.run()
