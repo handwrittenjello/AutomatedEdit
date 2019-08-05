@@ -154,10 +154,13 @@ def foo():
 
     runMKV = subprocess.call(['mkvmerge','-o', card + 'split.mkv', card + '.mkv', '--split', 'timestamps:'+ firstFightStart +','+ firstFightEnd + ',' + secondFightStart + ',' + secondFightEnd +
     ',' +thirdFightStart + ',' + thirdFightEnd + ',' + fourthFightStart + ',' + fourthFightEnd + ',' + fifthFightStart + ',' + fifthFightEnd])
-
+##Removal of Commercial Breaks
     for i in range(1,11,2):
         os.remove(card + 'split-00' + str(i) + '.mkv')
-    
+##Removing 11th extra split
+    os.remove(card + 'split-011.mkv')
+
+##Defining Winners and losers from DataFrame
     fightOneWinner = df.loc[4]['Winner']
     fightOneLoser = df.loc[4]["Loser"]
     fightTwoWinner = df.loc[3]['Winner']
@@ -168,10 +171,31 @@ def foo():
     fightFourLoser = df.loc[1]['Loser']
     fightFiveWinner = df.loc[0]['Winner']
     fightFiveLoser = df.loc[0]['Loser']
+    cardTable = df.loc[0]['Card']
 
-    printtest = print(fightOneLoser)
+##Defining Strings for file rename
+    renameOriginOne = card+'split-002.mkv'
+    renameOriginTwo = card+'split-004.mkv'
+    renameOriginThree = card+'split-006.mkv'
+    renameOriginFour = card+'split-008.mkv'
+    renameOriginFive = card+'split-010.mkv'
+    renameDestOne = 'UFC ' + cardTable + ' - ' + fightOneWinner + ' vs ' + fightOneLoser + '.mkv'
+    renameDestTwo = 'UFC ' + cardTable + ' - ' + fightTwoWinner + ' vs ' + fightTwoLoser + '.mkv'
+    renameDestThree = 'UFC ' + cardTable + ' - ' + fightThreeWinner + ' vs ' + fightThreeLoser + '.mkv'
+    renameDestFour = 'UFC ' + cardTable + ' - ' + fightFourWinner + ' vs ' + fightFourLoser + '.mkv'
+    renameDestFive = 'UFC ' + cardTable + ' - ' + fightFiveWinner + ' vs ' + fightFiveLoser + '.mkv'
 
-    return 'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card), runMKV, printtest;   
+    
+##Renaming Files after split
+    fileOneRename = os.rename(renameOriginOne,renameDestOne)
+    fileTwoRename = os.rename(renameOriginTwo,renameDestTwo)
+    fileThreeRename = os.rename(renameOriginThree,renameDestThree)
+    fileFourRename = os.rename(renameOriginFour,renameDestFour)
+    fileFiveRename = os.rename(renameOriginFive,renameDestFive)
+    filerenamelist = [fileOneRename,fileTwoRename,fileThreeRename,fileFourRename,fileFiveRename]
+
+
+    return  'You have successfully muxed Filename %s <br/> <a href="/">Back Home</a>' % (card);   
 
 if __name__ == '__main__':
     app.run()
