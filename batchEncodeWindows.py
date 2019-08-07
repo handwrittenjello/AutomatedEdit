@@ -20,10 +20,12 @@ print('=======--------=======')
 while fileList:
     inFile = fileList.pop()
     fileName, fileExtension = os.path.splitext(inFile)
-    outFile = fileName+'1'+'.mkv'
+    outFile = fileName +'1' +'.mkv'
 
     print('Processing',inFile)
     returncode  = subprocess.call(runstr.format(inFile,outFile),shell=True)
     time.sleep(5)
     print('Removing',inFile)
     os.remove(inFile)
+    print('Renaming',inFile)
+    os.rename(outFile,inFile)
