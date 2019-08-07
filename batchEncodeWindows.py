@@ -29,3 +29,7 @@ while fileList:
     os.remove(inFile)
     print('Renaming',inFile)
     os.rename(outFile,inFile)
+    print('Copying ' + inFile + ' to NAS')
+    filepath = inFile.split("/",)
+    relativeFilename = filepath[-1]
+    copyfile(inFile,'/Users/andrewlittlejohn/projects/AutomatedEdit/flask/NAS/'+relativeFilename)
