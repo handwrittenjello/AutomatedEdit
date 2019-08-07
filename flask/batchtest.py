@@ -2,6 +2,7 @@ import os
 import time
 import subprocess
 import sys
+from shutil import copyfile
 
 fileList = []
 rootdir = "/Users/andrewlittlejohn/projects/AutomatedEdit/flask"
@@ -26,4 +27,10 @@ while fileList:
     returncode  = subprocess.call(runstr.format(inFile,outFile),shell=True)
     time.sleep(5)
     print('Removing',inFile)
-    #os.remove(inFile)
+    os.remove(inFile)
+    print('Renaming',inFile)
+    os.rename(outFile,inFile)
+    print('Copying ' + inFile + ' to NAS')
+    filepath = inFile.split("/",)
+    relativeFilename = filepath[-1]
+    copyfile(inFile,'/Users/andrewlittlejohn/projects/AutomatedEdit/flask/NAS/'+relativeFilename)
