@@ -49,6 +49,9 @@ def foo():
     card = request.form['myFile']
     print(card)
 
+    runHandbrake = '/Users/andrewlittlejohn/bin/HandBrakeCLI -i %s -o 1%s --preset-import-file drew.json' % (card,card)
+    subprocess.call(runHandbrake,shell=True)
+
     return  'You have successfully sent %s to be transcoded<br/> <a href="/">Back Home</a>' % (card);   
 
 if __name__ == '__main__':
