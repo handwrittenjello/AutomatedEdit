@@ -4,7 +4,7 @@ import subprocess
 import sys
 
 fileList = []
-rootdir = #Enter Root directory as String here "Root Directory :"
+rootdir = "E:\To Transfer From Storage\To Transcode"
 for root, subFolders, files in os.walk(rootdir):
     for file in files:
         theFile = os.path.join(root,file)
@@ -13,7 +13,7 @@ for root, subFolders, files in os.walk(rootdir):
             print('Adding',theFile)
             fileList.append(theFile)
 #Enter Handbrake CLI Location here Handbrake preset should be in same directory
-runstr = 'HANDBRAKE CLI LOCATION HERE -i "{0}" -o "{1}" --preset-import-file drew.json'
+runstr = 'handbrakecli -i "{0}" -o "{1}" --preset-import-file drew.json'
 
 print('=======--------=======')
 
