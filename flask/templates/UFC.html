@@ -8,7 +8,7 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Black &mdash; Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
+    <title>UFC Fight Card Splitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -75,8 +75,8 @@
                 <div class="text-inner">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h1 class="to-animate">Black - Template</h1>
-                            <h2 class="to-animate">100% Free HTML5 Template. Licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons Attribution 3.0.</a> <br> Crafted with love by <a href="http://freehtml5.co/" target="_blank" title="Free HTML5 Bootstrap Templates" class="fh5co-link">FREEHTML5.co</a></h2>
+                            <h1 class="to-animate">UFC Fightcard</h1>
+                            <h2 class="to-animate">On this date</h2>
                         </div>
                     </div>
                 </div>
@@ -102,24 +102,35 @@
     <!-- Main JS (Do not remove) -->
     <script src="{{ url_for('static',filename='js/main.js') }}"></script>
 
-
-    <table id="FightCard"
-    
-    <caption>UFC FightCard Results</caption>
-    <table style="text-align:center;">
-{% for table in tables %}
-            {{ table|safe }}
-{% endfor %}
+    <div style =".ufctable"></div>
+        <div class="container">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center> 
+                            <table id="FightCard">
+                            <div style="text-align:center;">
+                            {% for table in tables %}
+                                    {{ table|safe }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
 
 
         <div class="container">
+        <div style="text-align:center;">
             <form action = '/ufc' method = "post">
                 Filename: <input type = "text" name = "ufcCard"><br />
-                First Fight Start: <input type = "text" name = "firstFightStart"><br />
-                First Fight End: <input type = "text" name = "firstFightEnd"><br />
+                First Fight Start: <input type = "text" name = "firstFightStart" align = "right"><br />
+                First Fight End: <input type = "text" name = "firstFightEnd" align = "right"><br />
                 Second Fight Start: <input type = "text" name = "secondFightStart"><br />
                 Second Fight End: <input type = "text" name = "secondFightEnd"><br />
                 Third Fight Start: <input type = "text" name = "thirdFightStart"><br />
@@ -136,8 +147,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 to-animate">
-                    <h3 class="section-title">About Us</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+                    <h3 class="section-title">About Me</h3>
+                    <p>Blue Belt in Brazilian Jiu Jitsu.  White Belt in coding.</p>
                     <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
                         Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
                         Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
@@ -147,10 +158,10 @@
                 <div class="col-md-4 to-animate">
                     <h3 class="section-title">Our Address</h3>
                     <ul class="contact-info">
-                        <li><i class="icon-map-marker"></i>198 West 21th Street, Suite 721 New York NY 10016</li>
-                        <li><i class="icon-phone"></i>+ 1235 2355 98</li>
-                        <li><i class="icon-envelope"></i><a href="#">info@yoursite.com</a></li>
-                        <li><i class="icon-globe2"></i><a href="#">www.yoursite.com</a></li>
+                        <li><i class="icon-map-marker"></i>2700 Bennett Yard Road</li>
+                        <li><i class="icon-phone"></i>724 713 2538</li>
+                        <li><i class="icon-envelope"></i><a href="#">handwrittenjello@gmail.com</a></li>
+                        <li><i class="icon-globe2"></i><a href="#">https://github.com/handwrittenjello</a></li>
                     </ul>
                     <h3 class="section-title">Connect with Us</h3>
                     <ul class="social-media">
