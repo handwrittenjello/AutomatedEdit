@@ -54,50 +54,220 @@ df['Card'] = firstCard
 df = df.replace('\n','', regex=True)
 df = df.iloc[::-1]
 df = df.tail(5)
+df = df.drop(columns=['Notes'])
 print (df)
 
 
 #write HTML File
 html_str = """
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<style>
-.floatLeft { width: 75%; float: left; }
-.floatRight {width: 25%; float: right; }
-.container { overflow: hidden; }
-</style>
-    <meta charset="UTF-8">
-</head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UFC Fight Card Splitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+    <meta name="author" content="FreeHTML5.co" />
+
+  <!-- 
+    //////////////////////////////////////////////////////
+
+    FREE HTML5 TEMPLATE 
+    DESIGNED & DEVELOPED by FREEHTML5.CO
+        
+    Website:        http://freehtml5.co/
+    Email:          info@freehtml5.co
+    Twitter:        http://twitter.com/fh5co
+    Facebook:       https://www.facebook.com/fh5co
+
+    //////////////////////////////////////////////////////
+     -->
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/animate.css') }}">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/icomoon.css') }}">
+    <!-- Simple Line Icons -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/simple-line-icons.css') }}">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
 
 
-<body>
-    <table id="FightCard"
-    <caption>UFC FightCard Results</caption>
-{% for table in tables %}
-            {{ table|safe }}
-{% endfor %}
+    <!-- Modernizr JS -->
+    <script src="{{ url_for('static',filename='js/modernizr-2.6.2.min.js') }}"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="{{ url_for('static',filename='js/respond.min.js') }}"></script>
+    <![endif]-->
+
+    <style>
+    .container { width: 100%; clear: both; }
+    .container input { width: 100px; clear: both; }
+    .container { display: flex; }
+    .container {align-items: flex-start; }
+    .navigation { display: flex; flex-flow: row wrap; justify-content: flex end }
+    @media all and (max-width: 800px) {
+        .navigation { justify-content: space-around;}    }
+    @media all and (max-width: 500px){
+        .navigation { flex-direction: column;}    }
+    </style>
+
+    <section id="fh5co-home" data-section="home" style="background-image: {{ url_for('static',filename='images/full_image_1.jpg')}};" data-stellar-background-ratio="0.5">
+        <div class="gradient"></div>
+        <div class="container">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center">
+                            <h1 class="to-animate">UFC Fightcard</h1>
+                            <h2 class="to-animate">On this date</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+
+    
+    <!-- jQuery -->
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ url_for('static',filename='js/jquery.easing.1.3.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <!-- Waypoints -->
+    <script src="{{ url_for('static',filename='js/jquery.waypoints.min.js') }}"></script>
+    <!-- Stellar Parallax -->
+    <script src="{{ url_for('static',filename='js/jquery.stellar.min.js') }}"></script>
+    <!-- Counters -->
+    <script src="{{ url_for('static',filename='js/jquery.countTo.js') }}"></script>
+    <!-- Main JS (Do not remove) -->
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+
+    <div style =".ufctable"></div>
+        <div class="container">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center> 
+                            <table id="FightCard">
+                            <div style="text-align:center;">
+                            {% for table in tables %}
+                                    {{ table|safe }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
 
-<form action = '/ufc' method = "post">
-Filename: <input type = "text" name = "ufcCard"><br />
-First Fight Start: <input type = "text" name = "firstFightStart"><br />
-First Fight End: <input type = "text" name = "firstFightEnd"><br />
-Second Fight Start: <input type = "text" name = "secondFightStart"><br />
-Second Fight End: <input type = "text" name = "secondFightEnd"><br />
-Third Fight Start: <input type = "text" name = "thirdFightStart"><br />
-Third Fight End: <input type = "text" name = "thirdFightEnd"><br />
-Fourth Fight Start: <input type = "text" name = "fourthFightStart"><br />
-Fourth Fight End: <input type = "text" name = "fourthFightEnd"><br />
-Fifth Fight Start: <input type = "text" name = "fifthFightStart"><br />
-Fifth Fight End: <input type = "text" name = "fifthFightEnd"><br />
 
-<input type = "submit" value = "Submit" />
-</form>
+        <div class="navigation">
+            <form action = '/ufc' method = "post">
+                <div id = "filename">
+                    Filename: <input type = "text" name = "ufcCard"></li>
+                    First Fight Start: <input type = "text" name = "firstFightStart"></li>
+                    <span>First Fight End: </span><input type = "text" name = "firstFightEnd"></li>
+                    <span>Second Fight Start: </span><input type = "text" name = "secondFightStart"></li>
+                    <span>Second Fight End: </span><input type = "text" name = "secondFightEnd"></li>
+                    <span>Third Fight Start: </span><input type = "text" name = "thirdFightStart"></li>
+                    <span>Third Fight End: </span><input type = "text" name = "thirdFightEnd"></li>
+                    <span>Fourth Fight Start: </span><input type = "text" name = "fourthFightStart"></li>
+                    <span>Fourth Fight End: </span><input type = "text" name = "fourthFightEnd"></li>
+                    <span>Fifth Fight Start: </span><input type = "text" name = "fifthFightStart"></li>
+                    <span>Fifth Fight End: </span><input type = "text" name = "fifthFightEnd"></li>
+                                <input type = "submit" value = "Submit" />
+                </div>
+            </form>
+        </div>
 
+            <div id="fh5co-footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">About Me</h3>
+                    <p>Blue Belt in Brazilian Jiu Jitsu.  White Belt in coding.</p>
+                    <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
+                        Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
+                        Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
+                    </p>
+                </div>
+
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">Our Address</h3>
+                    <ul class="contact-info">
+                        <li><i class="icon-map-marker"></i>2700 Bennett Yard Road</li>
+                        <li><i class="icon-phone"></i>724 713 2538</li>
+                        <li><i class="icon-envelope"></i><a href="#">handwrittenjello@gmail.com</a></li>
+                        <li><i class="icon-globe2"></i><a href="#">https://github.com/handwrittenjello</a></li>
+                    </ul>
+                    <h3 class="section-title">Connect with Us</h3>
+                    <ul class="social-media">
+                        <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>
+                        <li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">Drop us a line</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="sr-only">Name</label>
+                            <input type="name" class="form-control" id="name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="sr-only">Message</label>
+                            <textarea class="form-control" id="message" rows="7" placeholder="Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" id="btn-submit" class="btn btn-send-message btn-md" value="Send Message">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
 </html>
+
+
 
 """
 
