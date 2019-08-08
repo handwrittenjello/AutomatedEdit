@@ -54,6 +54,7 @@ df['Card'] = firstCard
 df = df.replace('\n','', regex=True)
 df = df.iloc[::-1]
 df = df.tail(5)
+df = df.drop(columns=['Notes'])
 print (df)
 
 
@@ -123,25 +124,12 @@ html_str = """
     <script src="{{ url_for('static',filename='js/respond.min.js') }}"></script>
     <![endif]-->
 
-    </head>
-    <body>
-    <header role="banner" id="fh5co-header">
-        <div class="fluid-container">
-            <nav class="navbar navbar-default navbar-fixed-top js-fullheight">
-                <div id="navbar" class="navbar-collapse js-fullheight">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>
-                        <li><a href="#" data-nav-section="services"><span>Services</span></a></li>
-                        <li><a href="#" data-nav-section="explore"><span>Project</span></a></li>
-                        <li><a href="#" data-nav-section="pricing"><span>Pricing</span></a></li>
-                        <li><a href="#" data-nav-section="team"><span>Team</span></a></li>
-                    </ul>
-                </div>
-            </nav>
-      </div>
-    </header>
+    <style>
+    .container { width: 100%; clear: both; }
+    .container input { width: 100px; clear: both; }
+    </style>
 
-    <section id="fh5co-home" data-section="home" style="background-image: url(images/full_image_1.jpg);" data-stellar-background-ratio="0.5">
+    <section id="fh5co-home" data-section="home" style="background-image: {{ url_for('static',filename='images/full_image_1.jpg')}};" data-stellar-background-ratio="0.5">
         <div class="gradient"></div>
         <div class="container">
             <div class="text-wrap">
@@ -157,88 +145,115 @@ html_str = """
         </div>
     </section>
 
-    <section id="fh5co-services" data-section="services">
-        <div class="fh5co-services">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 section-heading text-center">
-                        <h2 class="to-animate">Black Features</h2>
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 subtext">
-                                <h3 class="to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove. </h3>
-                            </div>
-                        </div>
-                    </div>
+ 
+
+    
+    <!-- jQuery -->
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ url_for('static',filename='js/jquery.easing.1.3.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <!-- Waypoints -->
+    <script src="{{ url_for('static',filename='js/jquery.waypoints.min.js') }}"></script>
+    <!-- Stellar Parallax -->
+    <script src="{{ url_for('static',filename='js/jquery.stellar.min.js') }}"></script>
+    <!-- Counters -->
+    <script src="{{ url_for('static',filename='js/jquery.countTo.js') }}"></script>
+    <!-- Main JS (Do not remove) -->
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+
+
+    <table id="FightCard"
+    
+    <caption>UFC FightCard Results</caption>
+    <table style="text-align:center;">
+{% for table in tables %}
+            {{ table|safe }}
+{% endfor %}
+
+
+
+
+
+        <div class="container">
+            <form action = '/ufc' method = "post">
+                Filename: <input type = "text" name = "ufcCard"><br />
+                First Fight Start: <input type = "text" name = "firstFightStart"><br />
+                First Fight End: <input type = "text" name = "firstFightEnd"><br />
+                Second Fight Start: <input type = "text" name = "secondFightStart"><br />
+                Second Fight End: <input type = "text" name = "secondFightEnd"><br />
+                Third Fight Start: <input type = "text" name = "thirdFightStart"><br />
+                Third Fight End: <input type = "text" name = "thirdFightEnd"><br />
+                Fourth Fight Start: <input type = "text" name = "fourthFightStart"><br />
+                Fourth Fight End: <input type = "text" name = "fourthFightEnd"><br />
+                Fifth Fight Start: <input type = "text" name = "fifthFightStart"><br />
+                Fifth Fight End: <input type = "text" name = "fifthFightEnd"><br />
+                <input type = "submit" value = "Submit" />
+            </form>
+        </div>
+
+            <div id="fh5co-footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">About Us</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+                    <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
+                        Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
+                        Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
+                    </p>
                 </div>
-                <div class="row">
-                    <div class="core-features">
-                        <div class="grid2 to-animate" style="background-image: url(images/full_image_2.jpg);">
-                        </div>
-                        <div class="grid2">
-                            <div class="core-f">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="core">
-                                            <i class="icon-cloud-download to-animate-2"></i>
-                                            <div class="fh5co-post to-animate">
-                                                <h3>Free Download</h3>
-                                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                            </div>
-                                        </div>
-                                        <div class="core">
-                                            <i class="icon-laptop to-animate-2"></i>
-                                            <div class="fh5co-post to-animate">
-                                                <h3>Responsive Layout</h3>
-                                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                            </div>
-                                        </div>
-                                        <div class="core">
-                                            <i class="icon-gear to-animate-2"></i>
-                                            <div class="fh5co-post to-animate">
-                                                <h3>24/7 Help &amp; Support</h3>
-                                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                            </div>
-                                        </div>
-                                        <div class="core">
-                                            <i class="icon-columns to-animate-2"></i>
-                                            <div class="fh5co-post to-animate">
-                                                <h3>Lots of Elements</h3>
-                                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">Our Address</h3>
+                    <ul class="contact-info">
+                        <li><i class="icon-map-marker"></i>198 West 21th Street, Suite 721 New York NY 10016</li>
+                        <li><i class="icon-phone"></i>+ 1235 2355 98</li>
+                        <li><i class="icon-envelope"></i><a href="#">info@yoursite.com</a></li>
+                        <li><i class="icon-globe2"></i><a href="#">www.yoursite.com</a></li>
+                    </ul>
+                    <h3 class="section-title">Connect with Us</h3>
+                    <ul class="social-media">
+                        <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>
+                        <li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>
+                    </ul>
                 </div>
-                <div id="fh5co-counter-section" class="fh5co-counters">
-                    <div class="container">
-                        <div class="row to-animate">
-                            <div class="col-md-3 text-center">
-                                <span class="fh5co-counter js-counter" data-from="0" data-to="3452" data-speed="5000" data-refresh-interval="50"></span>
-                                <span class="fh5co-counter-label">Cups of Coffee</span>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <span class="fh5co-counter js-counter" data-from="0" data-to="234" data-speed="5000" data-refresh-interval="50"></span>
-                                <span class="fh5co-counter-label">Client</span>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <span class="fh5co-counter js-counter" data-from="0" data-to="6542" data-speed="5000" data-refresh-interval="50"></span>
-                                <span class="fh5co-counter-label">Projects</span>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <span class="fh5co-counter js-counter" data-from="0" data-to="8687" data-speed="5000" data-refresh-interval="50"></span>
-                                <span class="fh5co-counter-label">Finished Projects</span>
-                            </div>
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">Drop us a line</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="sr-only">Name</label>
+                            <input type="name" class="form-control" id="name" placeholder="Name">
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="sr-only">Message</label>
+                            <textarea class="form-control" id="message" rows="7" placeholder="Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" id="btn-submit" class="btn btn-send-message btn-md" value="Send Message">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="fh5co-explore" data-section="explore">
+    </body>
+</html>
+
+
+
+"""
+
+"""
+   <section id="fh5co-explore" data-section="explore">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 section-heading text-center">
@@ -255,7 +270,7 @@ html_str = """
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <div class="project-grid to-animate-2" style="background-image:  url(images/project-1.jpg);">
+                        <div class="project-grid to-animate-2" style="background-image:{{ url_for('static',filename='images/project-1.jpg')}};">
                             <div class="desc">
                                 <h3><a href="#">MasCom Template</a></h3>
                                 <span>By: Louie D' Great</span>
@@ -263,7 +278,7 @@ html_str = """
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <div class="project-grid to-animate-2" style="background-image:  url(images/project-2.jpg);">
+                        <div class="project-grid to-animate-2" style="background-image:{{ url_for('static',filename='images/project-2.jpg')}};">
                             <div class="desc">
                                 <h3><a href="#">Long Tower</a></h3>
                                 <span>By: John Doe</span>
@@ -271,7 +286,7 @@ html_str = """
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <div class="project-grid to-animate-2" style="background-image:  url(images/project-3.jpg);">
+                        <div class="project-grid to-animate-2" style="background-image:{{ url_for('static',filename='images/project-3.jpg')}};">
                             <div class="desc">
                                 <h3><a href="#">Flash Theme</a></h3>
                                 <span>By: Thomas Jones</span>
@@ -279,7 +294,7 @@ html_str = """
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <div class="project-grid to-animate-2" style="background-image:  url(images/project-4.jpg);">
+                        <div class="project-grid to-animate-2" style="background-image:{{ url_for('static',filename='images/project-4.jpg')}};">
                             <div class="desc">
                                 <h3><a href="#">Tattoo</a></h3>
                                 <span>By: Louie D' Great</span>
@@ -287,7 +302,7 @@ html_str = """
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <div class="project-grid to-animate-2" style="background-image:  url(images/project-5.jpg);">
+                        <div class="project-grid to-animate-2" style="background-image:{{ url_for('static',filename='images/project-5.jpg')}};">
                             <div class="desc">
                                 <h3><a href="#">Train Theme</a></h3>
                                 <span>By: Ivan Kim</span>
@@ -295,7 +310,7 @@ html_str = """
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <div class="project-grid to-animate-2" style="background-image:  url(images/project-6.jpg);">
+                        <div class="project-grid to-animate-2" style="background-image:{{ url_for('static',filename='images/project-6.jpg')}};">
                             <div class="desc">
                                 <h3><a href="#">Dance Theme</a></h3>
                                 <span>By: FreeHTML5.co</span>
@@ -413,7 +428,7 @@ html_str = """
                 <div class="row">
                     <div class="col-md-4">
                         <div class="team-box text-center to-animate-2">
-                            <div class="user"><img class="img-reponsive" src="images/user-1.jpg" alt="Roger Garfield"></div>
+                            <div class="user"><img class="img-reponsive" src={{ url_for('static',filename='images/user-1.jpg')}} alt="Roger Garfield"></div>
                             <h3>Roger Garfield</h3>
                             <span class="position">Co-Founder, Lead Developer</span>
                             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
@@ -429,7 +444,7 @@ html_str = """
 
                     <div class="col-md-4">
                         <div class="team-box text-center to-animate-2">
-                            <div class="user"><img class="img-reponsive" src="images/user-2.jpg" alt="Roger Garfield"></div>
+                            <div class="user"><img class="img-reponsive" src={{ url_for('static',filename='images/user-2.jpg')}} alt="Roger Garfield"></div>
                             <h3>Kevin Steve</h3>
                             <span class="position">Co-Founder, Product Designer</span>
                             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
@@ -445,7 +460,7 @@ html_str = """
 
                     <div class="col-md-4">
                         <div class="team-box text-center to-animate-2">
-                            <div class="user"><img class="img-reponsive" src="images/user-3.jpg" alt="Roger Garfield"></div>
+                            <div class="user"><img class="img-reponsive" src={{ url_for('static',filename='images/user-3.jpg')}} alt="Roger Garfield"></div>
                             <h3>Ross Standford</h3>
                             <span class="position">Full Stack Developer</span>
                             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
@@ -464,7 +479,7 @@ html_str = """
     </section>
 
     <div class="getting-started getting-started-1">
-        <div class="getting-grid" style="background-image:  url(images/full_image_1.jpg);">
+        <div class="getting-grid" style="background-image:  {{ url_for('static',filename='images/full_image_1.jpg')}};">
             <div class="desc text-center">
                 <h2>Getting Started</h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
@@ -525,29 +540,7 @@ html_str = """
         </div>
     </div>
     <!-- <div id="map" class="fh5co-map"></div> -->
-
-    
-    <!-- jQuery -->
-    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
-    <!-- jQuery Easing -->
-    <script src="{{ url_for('static',filename='js/jquery.easing.1.3.js') }}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
-    <!-- Waypoints -->
-    <script src="{{ url_for('static',filename='js/jquery.waypoints.min.js') }}"></script>
-    <!-- Stellar Parallax -->
-    <script src="{{ url_for('static',filename='js/jquery.stellar.min.js') }}"></script>
-    <!-- Counters -->
-    <script src="{{ url_for('static',filename='js/jquery.countTo.js') }}"></script>
-    <!-- Main JS (Do not remove) -->
-    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
-
-    </body>
-</html>
-
-
-
-"""
+    """
 
 
 with open("./templates/UFC.html", "w") as file:
