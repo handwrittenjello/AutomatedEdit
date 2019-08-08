@@ -1,15 +1,30 @@
-<p>UFC Fight Card</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+.container { width: 150px; clear: both; }
+.container input { width: 100%; clear: both; }
+</style>
+    <meta charset="UTF-8">
+</head>
 
-<form action = '/ufc' method = "post">
-Filename: <input type = "text" name = "ufcCard"><br />
-How many Fights?: <input type = "text" name = "ufcFightNumber"><br />
-First Fight Start?: <input type = "text" name = "firstFightStart"><br />
-First Fight End: <input type = "text" name = "firstFightEnd"><br />
-
-<p>Show a file-select field which allows a file to be chosen for upload:</p>
-<form action="/action_page.php">
-  Select a file: <input type="file" name="myFile"><br><br>
-  <input type="submit" name="Submit">
-
-</form>
+<body>
+	<div class="container">
+		<form action = '/ufc' method = "post">
+			Filename: <input type = "text" name = "ufcCard"><br />
+			First Fight Start: <input type = "text" name = "firstFightStart"><br />
+			First Fight End: <input type = "text" name = "firstFightEnd"><br />
+			Second Fight Start: <input type = "text" name = "secondFightStart"><br />
+			Second Fight End: <input type = "text" name = "secondFightEnd"><br />
+			Third Fight Start: <input type = "text" name = "thirdFightStart"><br />
+			Third Fight End: <input type = "text" name = "thirdFightEnd"><br />
+			Fourth Fight Start: <input type = "text" name = "fourthFightStart"><br />
+			Fourth Fight End: <input type = "text" name = "fourthFightEnd"><br />
+			Fifth Fight Start: <input type = "text" name = "fifthFightStart"><br />
+			Fifth Fight End: <input type = "text" name = "fifthFightEnd"><br />
+			<input type = "submit" value = "Submit" />
+		</form>
+	</div>
+</body>
+</html>
 
