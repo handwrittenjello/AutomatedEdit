@@ -2,6 +2,7 @@ import os
 import time
 import subprocess
 import sys
+from shutil import copy2
 
 fileList = []
 rootdir = "E:\To Transfer From Storage\To Transcode"
@@ -29,7 +30,12 @@ while fileList:
     os.remove(inFile)
     print('Renaming',inFile)
     os.rename(outFile,inFile)
+    time.sleep(5)
     print('Copying ' + inFile + ' to NAS')
-    filepath = inFile.split("/",)
+    filepath = inFile.split("\\",)
     relativeFilename = filepath[-1]
-    copyfile(inFile,'/Users/andrewlittlejohn/projects/AutomatedEdit/flask/NAS/'+relativeFilename)
+    print('Moving ' + relativeFilename + ' to Sorting Folder')
+    print('relative filepath = ' +filepath[-1])
+    #sourcePath = r'Z:\media\The Sorting Folder\'
+    #networkPath = '\\media\\The Sorting Folder\\'
+    copy2(inFile,'Z:/media/The Sorting Folder/' + relativeFilename,follow_symlinks=True)
