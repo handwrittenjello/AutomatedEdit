@@ -19,7 +19,10 @@ cardID = search[0].id
 
 print(search[0].poster_path)
 print(search[0].backdrop_path)
-
+backdropLink = search[0].backdrop_path
+originalPath = 'https://image.tmdb.org/t/p/original/'
+directBackdrop = originalPath + backdropLink
+print(directBackdrop)
 
 """
 for res in search:
