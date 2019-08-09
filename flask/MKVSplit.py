@@ -134,6 +134,9 @@ html_str = """
         .navigation { justify-content: space-around;}    }
     @media all and (max-width: 500px){
         .navigation { flex-direction: column;}    }
+    input [type="text"], textarea {
+        background-color : d1d1d1;
+    }
     </style>
 
     <section id="fh5co-home" data-section="home" style="background-image: {{ url_for('static',filename='images/full_image_1.jpg')}};" data-stellar-background-ratio="0.5">
@@ -196,17 +199,17 @@ html_str = """
         <div class="navigation">
             <form action = '/ufc' method = "post">
                 <div id = "filename">
-                    Filename: <input type = "text" name = "ufcCard"></li>
-                    First Fight Start: <input type = "text" name = "firstFightStart"></li>
-                    <span>First Fight End: </span><input type = "text" name = "firstFightEnd"></li>
-                    <span>Second Fight Start: </span><input type = "text" name = "secondFightStart"></li>
-                    <span>Second Fight End: </span><input type = "text" name = "secondFightEnd"></li>
-                    <span>Third Fight Start: </span><input type = "text" name = "thirdFightStart"></li>
-                    <span>Third Fight End: </span><input type = "text" name = "thirdFightEnd"></li>
-                    <span>Fourth Fight Start: </span><input type = "text" name = "fourthFightStart"></li>
-                    <span>Fourth Fight End: </span><input type = "text" name = "fourthFightEnd"></li>
-                    <span>Fifth Fight Start: </span><input type = "text" name = "fifthFightStart"></li>
-                    <span>Fifth Fight End: </span><input type = "text" name = "fifthFightEnd"></li>
+                    <input type = "text" name = "ufcCard" placeholder="Filename"></li>
+                    <input type = "text" name = "firstFightStart" placeholder="First Fight Start"></li>
+                    <input type = "text" name = "firstFightEnd" placeholder="First Fight End"></li>
+                    <input type = "text" name = "secondFightStart" placeholder="Second Fight Start"></li>
+                    <input type = "text" name = "secondFightEnd" placeholder="Second Fight End"></li>
+                    <input type = "text" name = "thirdFightStart" placeholder="Third Fight Start"></li>
+                    <input type = "text" name = "thirdFightEnd" placeholder="Third Fight End"></li>
+                    <input type = "text" name = "fourthFightStart" placeholder="Fourth Fight Start"></li>
+                    <input type = "text" name = "fourthFightEnd" placeholder="Fourth Fight End"></li>
+                    <input type = "text" name = "fifthFightStart" placeholder="Fifth Fight Start"></li>
+                    <input type = "text" name = "fifthFightEnd" placeholder="Fifth Fight End"></li>
                                 <input type = "submit" value = "Submit" />
                 </div>
             </form>
