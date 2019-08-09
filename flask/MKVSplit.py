@@ -8,18 +8,22 @@ import os
 from tmdbv3api import TMDb
 from tmdbv3api import Movie
 import urllib
+from bs4 import BeautifulSoup
+import pandas as pd
+
+
 tmdb = TMDb()
 tmdb.api_key = '03efb1cb001d35e7a9c5a2569f12d10c'
 tmdb.language = 'en'
 tmdb.debug = False
 
-#Pulling UFC Data
-print('You will import all fight card results to the database.  Which Card would you like to start with?')
+#Pulling UFC Data from Wikipedia
+print('Which fight card will you be splitting today?')
 firstCard = input()
 website_url = requests.get('https://en.wikipedia.org/wiki/UFC_' + firstCard)
 html = website_url.content
 
-from bs4 import BeautifulSoup
+##Creating datafrom from pulled results table from Wikiscraper
 soup = BeautifulSoup(html, 'lxml')
 
 resultsTable = soup.find('table', class_ = 'toccolours')
@@ -35,6 +39,8 @@ victoryTime = []
 notes =[]
 ufcCard = []
 
+
+##Addes rows to the databale based on UFC Results
 for row in resultsTable.findAll('tr'):
     cells=row.findAll('td')
     if len(cells) == 8:
@@ -48,7 +54,7 @@ for row in resultsTable.findAll('tr'):
         notes.append(cells[7].find(text=True))
 
 
-import pandas as pd
+
 df=pd.DataFrame(weightClass, columns=['Weight Class'])
 df['Winner'] = fighterWinner
 df['def'] = defeat
@@ -64,31 +70,27 @@ df = df.tail(5)
 df = df.drop(columns=['Notes'])
 print (df)
 
-## Pulling Images from TheMovieDataBase.org
 
+## Pulling Images from TheMovieDataBase.org
 movie = Movie()
 print('Which UFC Card? (placeholder)')
 ##Movie Search
 search = movie.search('UFC ' + firstCard)
 
 print(search[0].id)
-
+##Selects first card from results
 cardID = search[0].id
 
-print(search[0].poster_path)
-print(search[0].backdrop_path)
+##Pulls the backdrop image path from TMDb
 backdropLink = search[0].backdrop_path
 originalPath = 'https://image.tmdb.org/t/p/original'
 directBackdrop = originalPath + backdropLink
-#directBackdrop = urllib.parse.quote_plus(directBackdrop)
-print(directBackdrop)
-#url = urllib.urlopen(directBackdrop)
-print(directBackdrop)
+
 
 #Fix for Table String
 tableString = """"""
 
-#write HTML File
+#write HTML File to /UFC.html
 html_str = """
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -291,12 +293,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('UFC.html', tables=[df.to_html(classes='data',header='true')], titles=df.columns.values, lists=df.iloc[:5,1:5],link=directBackdrop)
-"""
-def a():
-    session['dataframe'] = df
-    return redirect(url_for('b'))
-"""
 
+##
 @app.route('/ufc', methods=['POST'])
 def foo():
     card = request.form['ufcCard']
