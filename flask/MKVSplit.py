@@ -5,6 +5,13 @@ from flask import Flask, request, render_template
 import requests
 import numpy as np
 import os
+from tmdbv3api import TMDb
+from tmdbv3api import Movie
+import urllib
+tmdb = TMDb()
+tmdb.api_key = '03efb1cb001d35e7a9c5a2569f12d10c'
+tmdb.language = 'en'
+tmdb.debug = False
 
 #Pulling UFC Data
 print('You will import all fight card results to the database.  Which Card would you like to start with?')
@@ -57,10 +64,32 @@ df = df.tail(5)
 df = df.drop(columns=['Notes'])
 print (df)
 
+## Pulling Images from TheMovieDataBase.org
+
+movie = Movie()
+print('Which UFC Card? (placeholder)')
+##Movie Search
+search = movie.search('UFC ' + firstCard)
+
+print(search[0].id)
+
+cardID = search[0].id
+
+print(search[0].poster_path)
+print(search[0].backdrop_path)
+backdropLink = search[0].backdrop_path
+originalPath = 'https://image.tmdb.org/t/p/original'
+directBackdrop = originalPath + backdropLink
+#directBackdrop = urllib.parse.quote_plus(directBackdrop)
+print(directBackdrop)
+#url = urllib.urlopen(directBackdrop)
+print(directBackdrop)
+
+#Fix for Table String
+tableString = """"""
 
 #write HTML File
 html_str = """
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -74,10 +103,8 @@ html_str = """
     <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
     <meta name="author" content="FreeHTML5.co" />
-
   <!-- 
     //////////////////////////////////////////////////////
-
     FREE HTML5 TEMPLATE 
     DESIGNED & DEVELOPED by FREEHTML5.CO
         
@@ -85,10 +112,8 @@ html_str = """
     Email:          info@freehtml5.co
     Twitter:        http://twitter.com/fh5co
     Facebook:       https://www.facebook.com/fh5co
-
     //////////////////////////////////////////////////////
      -->
-
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
@@ -99,44 +124,41 @@ html_str = """
     <meta name="twitter:image" content="" />
     <meta name="twitter:url" content="" />
     <meta name="twitter:card" content="" />
-
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
-
     <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
     
     <!-- Animate.css -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/animate.css') }}">
+    <link rel="stylesheet" href="{{{{ url_for('static',filename='css/animate.css') }}}}">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/icomoon.css') }}">
+    <link rel="stylesheet" href="{{{{ url_for('static',filename='css/icomoon.css') }}}}">
     <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/simple-line-icons.css') }}">
+    <link rel="stylesheet" href="{{{{ url_for('static',filename='css/simple-line-icons.css') }}}}">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{{{ url_for('static',filename='css/bootstrap.css') }}}}">
     <!-- Style -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
-
-
+    <link rel="stylesheet" href="{{{{ url_for('static',filename='css/style.css') }}}}">
     <!-- Modernizr JS -->
-    <script src="{{ url_for('static',filename='js/modernizr-2.6.2.min.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/modernizr-2.6.2.min.js') }}}}"></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
-    <script src="{{ url_for('static',filename='js/respond.min.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/respond.min.js') }}}}"></script>
     <![endif]-->
-
     <style>
-    .container { width: 100%; clear: both; }
-    .container input { width: 100px; clear: both; }
-    .container { display: flex; }
-    .container {align-items: flex-start; }
-    .navigation { display: flex; flex-flow: row wrap; justify-content: flex end }
-    @media all and (max-width: 800px) {
-        .navigation { justify-content: space-around;}    }
-    @media all and (max-width: 500px){
-        .navigation { flex-direction: column;}    }
+    .container  {{ width: 100%; clear: both; }} 
+    .container input {{ {{ width: 100px; clear: both; }} }}
+    .container  {{ display: flex; }} 
+    .container  {{align-items: flex-start; }} 
+    .navigation  {{display: flex; flex-flow: row wrap; justify-content: flex end }} 
+    @media all and (max-width: 800px)  {{
+        .navigation {{ {{}} }} justify-content: space-around;}} }}    }} }}
+    @media all and (max-width: 500px){{ {{}} }}
+        .navigation {{  flex-direction: column;}} 
+    input [type="text"], textarea {{ {{}} }}
+        background-color : d1d1d1;
+    }} }}
     </style>
-
-    <section id="fh5co-home" data-section="home" style="background-image: {{ url_for('static',filename='images/full_image_1.jpg')}};" data-stellar-background-ratio="0.5">
+    <section id="fh5co-home" data-section="home" style="background-image: url({0});" data-stellar-background-ratio="0.5">
         <div class="gradient"></div>
         <div class="container">
             <div class="text-wrap">
@@ -151,25 +173,22 @@ html_str = """
             </div>
         </div>
     </section>
-
  
-
     
     <!-- jQuery -->
-    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/jquery.min.js') }}}}"></script>
     <!-- jQuery Easing -->
-    <script src="{{ url_for('static',filename='js/jquery.easing.1.3.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/jquery.easing.1.3.js') }}}}"></script>
     <!-- Bootstrap -->
-    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/bootstrap.min.js') }}}}"></script>
     <!-- Waypoints -->
-    <script src="{{ url_for('static',filename='js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/jquery.waypoints.min.js') }}}}"></script>
     <!-- Stellar Parallax -->
-    <script src="{{ url_for('static',filename='js/jquery.stellar.min.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/jquery.stellar.min.js') }}}}"></script>
     <!-- Counters -->
-    <script src="{{ url_for('static',filename='js/jquery.countTo.js') }}"></script>
+    <script src="{{{{ url_for('static',filename='js/jquery.countTo.js') }}}}"></script>
     <!-- Main JS (Do not remove) -->
-    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
-
+    <script src="{{{{ url_for('static',filename='js/main.js') }}}}"></script>
     <div style =".ufctable"></div>
         <div class="container">
             <div class="text-wrap">
@@ -179,39 +198,33 @@ html_str = """
                             <table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center> 
                             <table id="FightCard">
                             <div style="text-align:center;">
-                            {% for table in tables %}
-                                    {{ table|safe }}
-                            {% endfor %}
+                              {{% for table in tables %}} 
+                                      {{{{ table|safe }}}}
+                              {{% endfor %}} 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
         <div class="navigation">
             <form action = '/ufc' method = "post">
                 <div id = "filename">
-                    Filename: <input type = "text" name = "ufcCard"></li>
-                    First Fight Start: <input type = "text" name = "firstFightStart"></li>
-                    <span>First Fight End: </span><input type = "text" name = "firstFightEnd"></li>
-                    <span>Second Fight Start: </span><input type = "text" name = "secondFightStart"></li>
-                    <span>Second Fight End: </span><input type = "text" name = "secondFightEnd"></li>
-                    <span>Third Fight Start: </span><input type = "text" name = "thirdFightStart"></li>
-                    <span>Third Fight End: </span><input type = "text" name = "thirdFightEnd"></li>
-                    <span>Fourth Fight Start: </span><input type = "text" name = "fourthFightStart"></li>
-                    <span>Fourth Fight End: </span><input type = "text" name = "fourthFightEnd"></li>
-                    <span>Fifth Fight Start: </span><input type = "text" name = "fifthFightStart"></li>
-                    <span>Fifth Fight End: </span><input type = "text" name = "fifthFightEnd"></li>
+                    <input type = "text" name = "ufcCard" placeholder="Filename"></li>
+                    <input type = "text" name = "firstFightStart" placeholder="First Fight Start"></li>
+                    <input type = "text" name = "firstFightEnd" placeholder="First Fight End"></li>
+                    <input type = "text" name = "secondFightStart" placeholder="Second Fight Start"></li>
+                    <input type = "text" name = "secondFightEnd" placeholder="Second Fight End"></li>
+                    <input type = "text" name = "thirdFightStart" placeholder="Third Fight Start"></li>
+                    <input type = "text" name = "thirdFightEnd" placeholder="Third Fight End"></li>
+                    <input type = "text" name = "fourthFightStart" placeholder="Fourth Fight Start"></li>
+                    <input type = "text" name = "fourthFightEnd" placeholder="Fourth Fight End"></li>
+                    <input type = "text" name = "fifthFightStart" placeholder="Fifth Fight Start"></li>
+                    <input type = "text" name = "fifthFightEnd" placeholder="Fifth Fight End"></li>
                                 <input type = "submit" value = "Submit" />
                 </div>
             </form>
         </div>
-
             <div id="fh5co-footer" role="contentinfo">
         <div class="container">
             <div class="row">
@@ -223,7 +236,6 @@ html_str = """
                         Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
                     </p>
                 </div>
-
                 <div class="col-md-4 to-animate">
                     <h3 class="section-title">Our Address</h3>
                     <ul class="contact-info">
@@ -263,13 +275,9 @@ html_str = """
             </div>
         </div>
     </div>
-
     </body>
 </html>
-
-
-
-"""
+""".format(directBackdrop)
 
 
 with open("./templates/UFC.html", "w") as file:
@@ -282,7 +290,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('UFC.html', tables=[df.to_html(classes='data',header='true')], titles=df.columns.values, lists=df.iloc[:5,1:5])
+    return render_template('UFC.html', tables=[df.to_html(classes='data',header='true')], titles=df.columns.values, lists=df.iloc[:5,1:5],link=directBackdrop)
 """
 def a():
     session['dataframe'] = df
