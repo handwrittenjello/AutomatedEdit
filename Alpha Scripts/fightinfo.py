@@ -20,34 +20,50 @@ soup = BeautifulSoup(html, 'lxml')
 
 
 infoTable = soup.find('table', class_ = 'infobox')
+#print(infoTable)
 
+poster = []
 promotion = []
 date = []
 venue = []
 city = []
 attendance = []
 totalGate = []
-eventChronology = []
+previousCard = []
+currentCard = []
+futureCard = []
+tablePreviousCard = []
+tableCurrentCard = []
+tableFutureCard = []
 
-##Addes rows to the databale based on UFC Results
-for row in infoTable.findAll('tr'):
-    cells=row.findAll('td')
-    if len(cells) == 8:
-        promotion.append(cells[0].find(text=True))
-        date.append(cells[1].find(text=True))
-        venue.append(cells[2].find(text=True))
-        city.append(cells[3].find(text=True))
-        attendance.append(cells[4].find(text=True))
-        totalGate.append(cells[5].find(text=True))
-        eventChronology.append(cells[6].find(text=True))
+td = infoTable.findAll('td')
+poster.append(td[0].find(text=True))
+promotion.append(td[1].find(text=True))
+date.append(td[2].find(text=True))
+venue.append(td[3].find(text=True))
+city.append(td[4].find(text=True))
+attendance.append(td[5].find(text=True))
+totalGate.append(td[6].find(text=True))
+previousCard.append(td[7].find(text=True))
+currentCard.append(td[8].find(text=True))
+futureCard.append(td[9].find(text=True))
+tablePreviousCard.append(td[10].find(text=True))
 
-df=pd.DataFrame(promotion, columns=['Promotion'])
+df=pd.DataFrame(poster, columns=['Poster'])
+df['Promotion'] = promotion
 df['Date'] = date
 df['Venue'] = venue
 df['City'] = city
 df['Attendance'] = attendance
 df['Total Gate'] = totalGate
-df['Event Chronology'] = eventChronology
+df['Previous Card'] = previousCard
+df['Current Card'] = currentCard
+df['Future Card'] = futureCard
+df['Table Previous'] = tablePreviousCard
 df = df.replace('\n','', regex=True)
-print (df)
+df = df.replace("\xa0",' ', regex=True)
+dateString = (df.Date.to_string(index=False))
+print (df.Attendance.to_string(index=False))
+print(dateString)
+
 

@@ -40,7 +40,7 @@ notes =[]
 ufcCard = []
 
 
-##Addes rows to the databale based on UFC Results
+##Addes rows to the datatable based on UFC Results
 for row in resultsTable.findAll('tr'):
     cells=row.findAll('td')
     if len(cells) == 8:
