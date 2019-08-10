@@ -5,7 +5,10 @@ Project for automating editing down MMA Videos and creating scripts that make my
 ##MKVSplitter
 This tool pulls data from the UFC PPV Fight Card that the user inputs and displays the main card results, location and even pulls the backdrop image and displays it as the background while you enter your split times.
 
-[![Front Page Banner](https://res.cloudinary.com/handwrittenjello/image/upload/v1565476624/Data_Entry_Page.png "Front Page Banner")]
+![Front Page Banner](https://res.cloudinary.com/handwrittenjello/image/upload/v1565476624/Front_Page_Banner.png "Front Page Banner")
+
+
+![User Input Page](https://res.cloudinary.com/handwrittenjello/image/upload/v1565476624/Data_Entry_Page.png "User Input Page")
 
 
 1. Move .mkv file to /flask
