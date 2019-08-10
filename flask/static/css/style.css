@@ -792,14 +792,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn {
   text-transform: uppercase;
+  background: #000000;
   letter-spacing: 2px;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  border: 2px solid #00CC00;
+  height: 80%;
 }
 .btn.btn-primary {
-  background: #8C7676;
-  color: #fff;
+  background: #696969;
+  color: #696969;
   border: none !important;
   border: 2px solid transparent !important;
 }

@@ -23,6 +23,61 @@ firstCard = input()
 website_url = requests.get('https://en.wikipedia.org/wiki/UFC_' + firstCard)
 html = website_url.content
 
+##Creating datafrom for Fight info from pulled results table from Wikiscraper
+soupInfo = BeautifulSoup(html, 'lxml')
+
+
+infoTable = soupInfo.find('table', class_ = 'infobox')
+##Creating lists for the dataframe
+poster = []
+promotion = []
+date = []
+venue = []
+city = []
+attendance = []
+totalGate = []
+previousCard = []
+currentCard = []
+futureCard = []
+tablePreviousCard = []
+tableCurrentCard = []
+tableFutureCard = []
+##Pulling data from cells
+tdInfo = infoTable.findAll('td')
+poster.append(tdInfo[0].find(text=True))
+promotion.append(tdInfo[1].find(text=True))
+date.append(tdInfo[2].find(text=True))
+venue.append(tdInfo[3].find(text=True))
+city.append(tdInfo[4].find(text=True))
+attendance.append(tdInfo[5].find(text=True))
+totalGate.append(tdInfo[6].find(text=True))
+previousCard.append(tdInfo[7].find(text=True))
+currentCard.append(tdInfo[8].find(text=True))
+futureCard.append(tdInfo[9].find(text=True))
+tablePreviousCard.append(tdInfo[10].find(text=True))
+##Populating data from from lists
+dfInfo=pd.DataFrame(poster, columns=['Poster'])
+dfInfo['Promotion'] = promotion
+dfInfo['Date'] = date
+dfInfo['Venue'] = venue
+dfInfo['City'] = city
+dfInfo['Attendance'] = attendance
+dfInfo['TotalGate'] = totalGate
+dfInfo['Previous Card'] = previousCard
+dfInfo['Current Card'] = currentCard
+dfInfo['Future Card'] = futureCard
+dfInfo['Table Previous'] = tablePreviousCard
+dfInfo = dfInfo.replace('\n','', regex=True)
+dfInfo = dfInfo.replace("\xa0",' ', regex=True)
+posterString = (dfInfo.Poster.to_string(index=False))
+##Removing Characters from Poster String
+posterString = posterString[16:-1]
+dateString = (dfInfo.Date.to_string(index=False))
+venueString = (dfInfo.Venue.to_string(index=False))
+cityString = (dfInfo.City.to_string(index=False))
+attendanceString = (dfInfo.Attendance.to_string(index=False))
+gateString = (dfInfo.TotalGate.to_string(index=False))
+
 ##Creating datafrom from pulled results table from Wikiscraper
 soup = BeautifulSoup(html, 'lxml')
 
@@ -105,17 +160,7 @@ html_str = """
     <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
     <meta name="author" content="FreeHTML5.co" />
-  <!-- 
-    //////////////////////////////////////////////////////
-    FREE HTML5 TEMPLATE 
-    DESIGNED & DEVELOPED by FREEHTML5.CO
-        
-    Website:        http://freehtml5.co/
-    Email:          info@freehtml5.co
-    Twitter:        http://twitter.com/fh5co
-    Facebook:       https://www.facebook.com/fh5co
-    //////////////////////////////////////////////////////
-     -->
+
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
@@ -167,8 +212,8 @@ html_str = """
                 <div class="text-inner">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h1 class="to-animate">UFC Fightcard</h1>
-                            <h2 class="to-animate">On this date</h2>
+                            <h1 class="to-animate">{6}</h1>
+                            <h2 class="to-animate">{2}</h2>
                         </div>
                     </div>
                 </div>
@@ -223,7 +268,8 @@ html_str = """
                     <input type = "text" name = "fourthFightEnd" placeholder="Fourth Fight End"></li>
                     <input type = "text" name = "fifthFightStart" placeholder="Fifth Fight Start"></li>
                     <input type = "text" name = "fifthFightEnd" placeholder="Fifth Fight End"></li>
-                                <input type = "submit" value = "Submit" />
+                    <input type="submit" class = "btn" value="Submit">
+                    
                 </div>
             </form>
         </div>
@@ -231,8 +277,14 @@ html_str = """
         <div class="container">
             <div class="row">
                 <div class="col-md-4 to-animate">
-                    <h3 class="section-title">About Me</h3>
+                    <h3 class="section-title">Fight Card Information</h3>
                     <p>Blue Belt in Brazilian Jiu Jitsu.  White Belt in coding.</p>
+                    <p> Venue: {1}</p>
+                    <p> Date: {2}</p>
+                    <p> Location: {3}</p>
+                    <p> Attendance: {4}</p>
+                    <p> Total Gate: {5}</p>
+
                     <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
                         Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
                         Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
@@ -279,7 +331,7 @@ html_str = """
     </div>
     </body>
 </html>
-""".format(directBackdrop)
+""".format(directBackdrop, venueString, dateString, cityString, attendanceString, gateString, posterString)
 
 
 with open("./templates/UFC.html", "w") as file:
