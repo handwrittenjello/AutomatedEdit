@@ -192,7 +192,7 @@ html_str = """
     <script src="{{{{ url_for('static',filename='js/respond.min.js') }}}}"></script>
     <![endif]-->
     <style>
-    .container  {{ width: 100%; clear: both; }} 
+    .container  {{ width: 100%; clear: both; height: 100% }} 
     .container input {{ {{ width: 100px; clear: both; }} }}
     .container  {{ display: flex; }} 
     .container  {{align-items: flex-start; }} 
@@ -237,12 +237,12 @@ html_str = """
     <!-- Main JS (Do not remove) -->
     <script src="{{{{ url_for('static',filename='js/main.js') }}}}"></script>
     <div style =".ufctable"></div>
-        <div class="container">
+        <div class="table-responsive">
             <div class="text-wrap">
                 <div class="text-inner">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center> 
+                    <div class="table-row">
+                        <div class= "col-md-8 col-md-offset-2 text-center">
+                            <table width="100%" border="0"  text-align:center> 
                             <table id="FightCard">
                             <div style="text-align:center;">
                               {{% for table in tables %}} 
