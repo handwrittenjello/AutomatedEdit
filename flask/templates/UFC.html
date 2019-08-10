@@ -12,17 +12,7 @@
     <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
     <meta name="author" content="FreeHTML5.co" />
-  <!-- 
-    //////////////////////////////////////////////////////
-    FREE HTML5 TEMPLATE 
-    DESIGNED & DEVELOPED by FREEHTML5.CO
-        
-    Website:        http://freehtml5.co/
-    Email:          info@freehtml5.co
-    Twitter:        http://twitter.com/fh5co
-    Facebook:       https://www.facebook.com/fh5co
-    //////////////////////////////////////////////////////
-     -->
+
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
@@ -54,7 +44,7 @@
     <script src="{{ url_for('static',filename='js/respond.min.js') }}"></script>
     <![endif]-->
     <style>
-    .container  { width: 100%; clear: both; } 
+    .container  { width: 100%; clear: both; height: 100% } 
     .container input { { width: 100px; clear: both; } }
     .container  { display: flex; } 
     .container  {align-items: flex-start; } 
@@ -67,15 +57,15 @@
         background-color : d1d1d1;
     } }
     </style>
-    <section id="fh5co-home" data-section="home" style="background-image: url(https://image.tmdb.org/t/p/original/3KXUo0mJwnb8HekUURMV41mnNyk.jpg);" data-stellar-background-ratio="0.5">
+    <section id="fh5co-home" data-section="home" style="background-image: url(https://image.tmdb.org/t/p/original/sqUYMWeJlsJoRu0IP3DRIj09kSq.jpg);" data-stellar-background-ratio="0.5">
         <div class="gradient"></div>
         <div class="container">
             <div class="text-wrap">
                 <div class="text-inner">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h1 class="to-animate">UFC Fightcard</h1>
-                            <h2 class="to-animate">On this date</h2>
+                            <h1 class="to-animate">UFC 239: Jones vs. Santos</h1>
+                            <h2 class="to-animate"> July 6, 2019</h2>
                         </div>
                     </div>
                 </div>
@@ -99,12 +89,12 @@
     <!-- Main JS (Do not remove) -->
     <script src="{{ url_for('static',filename='js/main.js') }}"></script>
     <div style =".ufctable"></div>
-        <div class="container">
+        <div class="table-responsive">
             <div class="text-wrap">
                 <div class="text-inner">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center> 
+                    <div class="table-row">
+                        <div class= "col-md-8 col-md-offset-2 text-center">
+                            <table width="100%" border="0"  text-align:center> 
                             <table id="FightCard">
                             <div style="text-align:center;">
                               {% for table in tables %} 
@@ -130,7 +120,8 @@
                     <input type = "text" name = "fourthFightEnd" placeholder="Fourth Fight End"></li>
                     <input type = "text" name = "fifthFightStart" placeholder="Fifth Fight Start"></li>
                     <input type = "text" name = "fifthFightEnd" placeholder="Fifth Fight End"></li>
-                                <input type = "submit" value = "Submit" />
+                    <input type="submit" class = "btn" value="Submit">
+                    
                 </div>
             </form>
         </div>
@@ -138,8 +129,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 to-animate">
-                    <h3 class="section-title">About Me</h3>
+                    <h3 class="section-title">Fight Card Information</h3>
                     <p>Blue Belt in Brazilian Jiu Jitsu.  White Belt in coding.</p>
+                    <p> Venue:  T-Mobile Arena</p>
+                    <p> Date:  July 6, 2019</p>
+                    <p> Location:  Paradise, Nevada</p>
+                    <p> Attendance:  18,358</p>
+                    <p> Total Gate:  $6,063,707.11</p>
+
                     <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
                         Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
                         Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>

@@ -8,18 +8,77 @@ import os
 from tmdbv3api import TMDb
 from tmdbv3api import Movie
 import urllib
+from bs4 import BeautifulSoup
+import pandas as pd
+
+
 tmdb = TMDb()
 tmdb.api_key = '03efb1cb001d35e7a9c5a2569f12d10c'
 tmdb.language = 'en'
 tmdb.debug = False
 
-#Pulling UFC Data
-print('You will import all fight card results to the database.  Which Card would you like to start with?')
+#Pulling UFC Data from Wikipedia
+print('Which fight card will you be splitting today?')
 firstCard = input()
 website_url = requests.get('https://en.wikipedia.org/wiki/UFC_' + firstCard)
 html = website_url.content
 
-from bs4 import BeautifulSoup
+##Creating datafrom for Fight info from pulled results table from Wikiscraper
+soupInfo = BeautifulSoup(html, 'lxml')
+
+
+infoTable = soupInfo.find('table', class_ = 'infobox')
+##Creating lists for the dataframe
+poster = []
+promotion = []
+date = []
+venue = []
+city = []
+attendance = []
+totalGate = []
+previousCard = []
+currentCard = []
+futureCard = []
+tablePreviousCard = []
+tableCurrentCard = []
+tableFutureCard = []
+##Pulling data from cells
+tdInfo = infoTable.findAll('td')
+poster.append(tdInfo[0].find(text=True))
+promotion.append(tdInfo[1].find(text=True))
+date.append(tdInfo[2].find(text=True))
+venue.append(tdInfo[3].find(text=True))
+city.append(tdInfo[4].find(text=True))
+attendance.append(tdInfo[5].find(text=True))
+totalGate.append(tdInfo[6].find(text=True))
+previousCard.append(tdInfo[7].find(text=True))
+currentCard.append(tdInfo[8].find(text=True))
+futureCard.append(tdInfo[9].find(text=True))
+tablePreviousCard.append(tdInfo[10].find(text=True))
+##Populating data from from lists
+dfInfo=pd.DataFrame(poster, columns=['Poster'])
+dfInfo['Promotion'] = promotion
+dfInfo['Date'] = date
+dfInfo['Venue'] = venue
+dfInfo['City'] = city
+dfInfo['Attendance'] = attendance
+dfInfo['TotalGate'] = totalGate
+dfInfo['Previous Card'] = previousCard
+dfInfo['Current Card'] = currentCard
+dfInfo['Future Card'] = futureCard
+dfInfo['Table Previous'] = tablePreviousCard
+dfInfo = dfInfo.replace('\n','', regex=True)
+dfInfo = dfInfo.replace("\xa0",' ', regex=True)
+posterString = (dfInfo.Poster.to_string(index=False))
+##Removing Characters from Poster String
+posterString = posterString[16:-1]
+dateString = (dfInfo.Date.to_string(index=False))
+venueString = (dfInfo.Venue.to_string(index=False))
+cityString = (dfInfo.City.to_string(index=False))
+attendanceString = (dfInfo.Attendance.to_string(index=False))
+gateString = (dfInfo.TotalGate.to_string(index=False))
+
+##Creating datafrom from pulled results table from Wikiscraper
 soup = BeautifulSoup(html, 'lxml')
 
 resultsTable = soup.find('table', class_ = 'toccolours')
@@ -35,6 +94,8 @@ victoryTime = []
 notes =[]
 ufcCard = []
 
+
+##Addes rows to the datatable based on UFC Results
 for row in resultsTable.findAll('tr'):
     cells=row.findAll('td')
     if len(cells) == 8:
@@ -48,7 +109,7 @@ for row in resultsTable.findAll('tr'):
         notes.append(cells[7].find(text=True))
 
 
-import pandas as pd
+
 df=pd.DataFrame(weightClass, columns=['Weight Class'])
 df['Winner'] = fighterWinner
 df['def'] = defeat
@@ -64,31 +125,27 @@ df = df.tail(5)
 df = df.drop(columns=['Notes'])
 print (df)
 
-## Pulling Images from TheMovieDataBase.org
 
+## Pulling Images from TheMovieDataBase.org
 movie = Movie()
 print('Which UFC Card? (placeholder)')
 ##Movie Search
 search = movie.search('UFC ' + firstCard)
 
 print(search[0].id)
-
+##Selects first card from results
 cardID = search[0].id
 
-print(search[0].poster_path)
-print(search[0].backdrop_path)
+##Pulls the backdrop image path from TMDb
 backdropLink = search[0].backdrop_path
 originalPath = 'https://image.tmdb.org/t/p/original'
 directBackdrop = originalPath + backdropLink
-#directBackdrop = urllib.parse.quote_plus(directBackdrop)
-print(directBackdrop)
-#url = urllib.urlopen(directBackdrop)
-print(directBackdrop)
+
 
 #Fix for Table String
 tableString = """"""
 
-#write HTML File
+#write HTML File to /UFC.html
 html_str = """
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -103,17 +160,7 @@ html_str = """
     <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
     <meta name="author" content="FreeHTML5.co" />
-  <!-- 
-    //////////////////////////////////////////////////////
-    FREE HTML5 TEMPLATE 
-    DESIGNED & DEVELOPED by FREEHTML5.CO
-        
-    Website:        http://freehtml5.co/
-    Email:          info@freehtml5.co
-    Twitter:        http://twitter.com/fh5co
-    Facebook:       https://www.facebook.com/fh5co
-    //////////////////////////////////////////////////////
-     -->
+
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
@@ -145,7 +192,7 @@ html_str = """
     <script src="{{{{ url_for('static',filename='js/respond.min.js') }}}}"></script>
     <![endif]-->
     <style>
-    .container  {{ width: 100%; clear: both; }} 
+    .container  {{ width: 100%; clear: both; height: 100% }} 
     .container input {{ {{ width: 100px; clear: both; }} }}
     .container  {{ display: flex; }} 
     .container  {{align-items: flex-start; }} 
@@ -165,8 +212,8 @@ html_str = """
                 <div class="text-inner">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h1 class="to-animate">UFC Fightcard</h1>
-                            <h2 class="to-animate">On this date</h2>
+                            <h1 class="to-animate">{6}</h1>
+                            <h2 class="to-animate">{2}</h2>
                         </div>
                     </div>
                 </div>
@@ -190,12 +237,12 @@ html_str = """
     <!-- Main JS (Do not remove) -->
     <script src="{{{{ url_for('static',filename='js/main.js') }}}}"></script>
     <div style =".ufctable"></div>
-        <div class="container">
+        <div class="table-responsive">
             <div class="text-wrap">
                 <div class="text-inner">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center> 
+                    <div class="table-row">
+                        <div class= "col-md-8 col-md-offset-2 text-center">
+                            <table width="100%" border="0"  text-align:center> 
                             <table id="FightCard">
                             <div style="text-align:center;">
                               {{% for table in tables %}} 
@@ -221,7 +268,8 @@ html_str = """
                     <input type = "text" name = "fourthFightEnd" placeholder="Fourth Fight End"></li>
                     <input type = "text" name = "fifthFightStart" placeholder="Fifth Fight Start"></li>
                     <input type = "text" name = "fifthFightEnd" placeholder="Fifth Fight End"></li>
-                                <input type = "submit" value = "Submit" />
+                    <input type="submit" class = "btn" value="Submit">
+                    
                 </div>
             </form>
         </div>
@@ -229,8 +277,14 @@ html_str = """
         <div class="container">
             <div class="row">
                 <div class="col-md-4 to-animate">
-                    <h3 class="section-title">About Me</h3>
+                    <h3 class="section-title">Fight Card Information</h3>
                     <p>Blue Belt in Brazilian Jiu Jitsu.  White Belt in coding.</p>
+                    <p> Venue: {1}</p>
+                    <p> Date: {2}</p>
+                    <p> Location: {3}</p>
+                    <p> Attendance: {4}</p>
+                    <p> Total Gate: {5}</p>
+
                     <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
                         Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
                         Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
@@ -277,7 +331,7 @@ html_str = """
     </div>
     </body>
 </html>
-""".format(directBackdrop)
+""".format(directBackdrop, venueString, dateString, cityString, attendanceString, gateString, posterString)
 
 
 with open("./templates/UFC.html", "w") as file:
@@ -291,12 +345,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('UFC.html', tables=[df.to_html(classes='data',header='true')], titles=df.columns.values, lists=df.iloc[:5,1:5],link=directBackdrop)
-"""
-def a():
-    session['dataframe'] = df
-    return redirect(url_for('b'))
-"""
 
+##
 @app.route('/ufc', methods=['POST'])
 def foo():
     card = request.form['ufcCard']
