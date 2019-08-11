@@ -41,4 +41,24 @@ Python 3
 9. The files will be renamed based on the fightcard information with the naming convention UFC (Card) - (Winner) vs (Loser)
 
 
+# Batch Transcoding
+The `batchEncodeWindows.py` file will scan your directory tree for **ALL** video files to transcode using HandbrakeCLI.  It uses a preset handbrake output template.  It will then move your files to a specific directory.
+
+## Prerequisites
+- `pip3 install os`
+- `pip3 install subprocess`
+- `pip3 install sys`
+- `pip3 install shutil`
+- HandbrakeCLI
+
+## Set Up
+
+1.  Set your root directory 
+2.  Export your Handbrake preset temoplate file to `.`
+3.  Update filename in script
+4.  Add destination folder
+
+Be mindful of the `/`'s and the `\`'s
+
+![Transcode](https://res.cloudinary.com/handwrittenjello/image/upload/v1565526935/Handbrake_Instructions.jpg "Transcode")
 

@@ -140,7 +140,7 @@ cardID = search[0].id
 backdropLink = search[0].backdrop_path
 originalPath = 'https://image.tmdb.org/t/p/original'
 directBackdrop = originalPath + backdropLink
-
+print(directBackdrop)
 
 #Fix for Table String
 tableString = """"""
