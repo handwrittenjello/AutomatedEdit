@@ -1,7 +1,7 @@
 
 import subprocess
 import webbrowser
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 import requests
 import numpy as np
 import os
@@ -11,6 +11,14 @@ import urllib
 from bs4 import BeautifulSoup
 import pandas as pd
 
+
+#Run Flask
+app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    return render_template('input.html')
 
 tmdb = TMDb()
 tmdb.api_key = '03efb1cb001d35e7a9c5a2569f12d10c'
@@ -337,13 +345,10 @@ html_str = """
 with open("./templates/UFC.html", "w") as file:
     file.write(html_str)
 
-#Run Flask
-app = Flask(__name__)
 
 
-
-@app.route('/')
-def index():
+@app.route('/split', methods=['POST'])
+def split():
     return render_template('UFC.html', tables=[df.to_html(classes='data',header='true')], titles=df.columns.values, lists=df.iloc[:5,1:5],link=directBackdrop)
 
 ##

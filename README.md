@@ -11,8 +11,6 @@ This tool pulls data from the UFC PPV Fight Card that the user inputs and displa
 ## User Input Page
 ![User Input Page](https://res.cloudinary.com/handwrittenjello/image/upload/v1565476624/Data_Entry_Page.png "User Input Page")
 
-### How to use MKV Splitter
-
 ## Prerequisites
 
 Python 3
