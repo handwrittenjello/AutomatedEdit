@@ -16,6 +16,7 @@ from flask_sqlalchemy import SQLAlchemy
 #Run Flask
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
+app.config["CACHE_TYPE"] = "null"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
