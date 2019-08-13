@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="fh5co-home" data-section="home" style="background-image: url({{ directBackdrop }});" data-stellar-background-ratio="0.5">
+        <div class="gradient"></div>
+        <div class="container">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center">
+                            <h1 class="to-animate">UFC {{ card }}: Jones vs. Santos</h1>
+                            <h2 class="to-animate"> July 6, 2019</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    
+    <!-- jQuery -->
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ url_for('static',filename='js/jquery.easing.1.3.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <!-- Waypoints -->
+    <script src="{{ url_for('static',filename='js/jquery.waypoints.min.js') }}"></script>
+    <!-- Stellar Parallax -->
+    <script src="{{ url_for('static',filename='js/jquery.stellar.min.js') }}"></script>
+    <!-- Counters -->
+    <script src="{{ url_for('static',filename='js/jquery.countTo.js') }}"></script>
+    <!-- Main JS (Do not remove) -->
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <div style =".ufctable"></div>
+        <div class="table-responsive">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="table-row">
+                        <div class= "col-md-8 col-md-offset-2 text-center">
+                            <table width="100%" border="0"  text-align:center> 
+                            <table id="FightCard">
+                            <div style="text-align:center;">
+                              {% for table in tables %} 
+                                      {{ table|safe }}
+                              {% endfor %} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="navigation">
+            <form action = '/ufc' method = "post">
+                <div id = "filename">
+                    {{ form.firstFightStart(placeholder="First Fight Start")}}</li>
+                    {{ form.firstFightEnd(placeholder="First Fight End")}}</li>
+                    {{ form.secondFightStart(placeholder="Second Fight Start")}}</li>
+                    {{ form.secondFightStart(placeholder="Second Fight End")}}</li>
+                    {{ form.thirdFightStart(placeholder="Third Fight Start")}}</li>
+                    {{ form.thirdFightEnd(placeholder="Third Fight End")}}</li>
+                    {{ form.fourthFightStart(placeholder="Fourth Fight Start")}}</li>
+                    {{ form.fourthFightEnd(placeholder="Fourth Fight End")}}</li>
+                    {{ form.fifthFightStart(placeholder="Fifth Fight Start")}}</li>
+                    {{ form.fifthFightEnd(placeholder="Fifth Fight End")}}</li>
+                    {{ form.filename(placeholder="Filename")}}</li>
+                    <input type="submit" class = "btn" value="Submit">
+                    
+                </div>
+            </form>
+        </div>
+            <div id="fh5co-footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">Fight Card Information</h3>
+                    <p>Blue Belt in Brazilian Jiu Jitsu.  White Belt in coding.</p>
+                    <p> Venue:  T-Mobile Arena</p>
+                    <p> Date:  July 6, 2019</p>
+                    <p> Location:  Paradise, Nevada</p>
+                    <p> Attendance:  18,358</p>
+                    <p> Total Gate:  $6,063,707.11</p>
+
+                    <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
+                        Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
+                        Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
+                    </p>
+                </div>
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">Our Address</h3>
+                    <ul class="contact-info">
+                        <li><i class="icon-map-marker"></i>2700 Bennett Yard Road</li>
+                        <li><i class="icon-phone"></i>724 713 2538</li>
+                        <li><i class="icon-envelope"></i><a href="#">handwrittenjello@gmail.com</a></li>
+                        <li><i class="icon-globe2"></i><a href="#">https://github.com/handwrittenjello</a></li>
+                    </ul>
+                    <h3 class="section-title">Connect with Us</h3>
+                    <ul class="social-media">
+                        <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>
+                        <li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 to-animate">
+                    <h3 class="section-title">Drop us a line</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="sr-only">Name</label>
+                            <input type="name" class="form-control" id="name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="sr-only">Message</label>
+                            <textarea class="form-control" id="message" rows="7" placeholder="Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" id="btn-submit" class="btn btn-send-message btn-md" value="Send Message">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
