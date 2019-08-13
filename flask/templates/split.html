@@ -8,8 +8,8 @@
                 <div class="text-inner">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h1 class="to-animate">UFC {{ card }}: Jones vs. Santos</h1>
-                            <h2 class="to-animate"> July 6, 2019</h2>
+                            <h1 class="to-animate">{{posterString}}</h1>
+                            <h2 class="to-animate">{{dateString}}</h2>
                         </div>
                     </div>
                 </div>
@@ -74,17 +74,12 @@
             <div class="row">
                 <div class="col-md-4 to-animate">
                     <h3 class="section-title">Fight Card Information</h3>
-                    <p>Blue Belt in Brazilian Jiu Jitsu.  White Belt in coding.</p>
-                    <p> Venue:  T-Mobile Arena</p>
-                    <p> Date:  July 6, 2019</p>
-                    <p> Location:  Paradise, Nevada</p>
-                    <p> Attendance:  18,358</p>
-                    <p> Total Gate:  $6,063,707.11</p>
+                    <p> Venue: {{ venueString }}</p>
+                    <p> Date:  {{dateString}}</p>
+                    <p> Location:  {{cityString}}</p>
+                    <p> Attendance:  {{attendanceString}}</p>
+                    <p> Total Gate:  {{gateString}}</p>
 
-                    <p class="copy-right">&copy; 2015 Twist Free Template. <br>All Rights Reserved. <br>
-                        Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
-                        Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>
-                    </p>
                 </div>
                 <div class="col-md-4 to-animate">
                     <h3 class="section-title">Our Address</h3>
