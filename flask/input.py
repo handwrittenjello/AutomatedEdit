@@ -19,12 +19,7 @@ import json
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 app.config["CACHE_TYPE"] = "null"
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-#db = SQLAlchemy(app)
 
-#class Card(db.Model):
- #   id = db.Column(db.Integer, primary_key=True)
-  #  card = db.Column(db.String(3), unique=True)
 
 @app.route('/', methods=['GET', 'POST'])
 def register():
@@ -36,28 +31,42 @@ def register():
     return render_template('input.html', form=form)
 def form():
     card = request.form(inputForm.cardNumber)
+    cardType = request.form(inputForm.cardNumberSelect)
     return print(card)
 
 @app.route('/split', methods=["GET", "POST"])
 def login():
     form = splitForm()
     card = request.form.get('cardNumber')
+    cardType = request.form.get('cardNumberSelect')
+    #print(cardType)
     tmdb = TMDb()
     tmdb.api_key = '03efb1cb001d35e7a9c5a2569f12d10c'
     tmdb.language = 'en'
     tmdb.debug = False
-    website_url = requests.get('https://en.wikipedia.org/wiki/UFC_' + card)
+    if cardType == 'ppv':
+        website_url = requests.get('https://en.wikipedia.org/wiki/UFC_' + card)
+    elif cardType == 'espn':
+        card = card.replace(' ', '_')
+        website_url = requests.get('https://en.wikipedia.org/wiki/UFC_on_ESPN:_' + card)
+        print(card)
+        card = card.replace('_', ' ')
     html = website_url.content
     ## Pulling Images from TheMovieDataBase.org
     movie = Movie()
 	##Movie Search
-    search = movie.search('UFC ' + card)
-    print(search[0].id)
+    if cardType == 'ppv':
+        search = movie.search('UFC ' + card)
+    elif cardType == 'espn':
+        search = movie.search(card)
+        #print(card)
+    #print(search)
+    #print(search[0].id)
     ##Selects first card from results
     cardID = search[0].id
     ##Pulls the backdrop image path from TMDb
     backdropLink = search[0].backdrop_path
-    print(backdropLink)
+    #print(backdropLink)
     originalPath = 'https://image.tmdb.org/t/p/original'
     if not backdropLink:
         directBackdrop = '000000'

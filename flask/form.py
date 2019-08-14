@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 class RegistrationForm(FlaskForm):
@@ -27,16 +27,17 @@ class LoginForm(FlaskForm):
 
 class inputForm(FlaskForm):
 	cardNumber = StringField('CardNumber', validators=[DataRequired(), Length (min=1, max=3)])
+	cardNumberSelect = SelectField('CardNumberSelect', choices=[('ppv','PPV'), ('espn', 'ESPN'), ('fightNight', 'Fight Night')])
 
 class splitForm(FlaskForm):
-	firstFightStart = StringField('firstFightStart', validators=[DataRequired(), Length(6)])
-	firstFightEnd = StringField('firstFightEnd', validators=[DataRequired(), Length(6)])
-	secondFightStart = StringField('secondFightStart', validators=[DataRequired(), Length(6)])
-	secondFightEnd = StringField('secondFightEnd', validators=[DataRequired(), Length(6)])
-	thirdFightStart = StringField('thirdFightStart', validators=[DataRequired(), Length(6)])
-	thirdFightEnd = StringField('thirdFightEnd', validators=[DataRequired(), Length(6)])
-	fourthFightStart = StringField('fourthFightStart', validators=[DataRequired(), Length(6)])
-	fourthFightEnd = StringField('fourthFightEnd', validators=[DataRequired(), Length(6)])
-	fifthFightStart = StringField('fifthFightStart', validators=[DataRequired(), Length(6)])
-	fifthFightEnd = StringField('fifthFightEnd', validators=[DataRequired(), Length(6)])
+	firstFightStart = StringField('firstFightStart', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	firstFightEnd = StringField('firstFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	secondFightStart = StringField('secondFightStart', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	secondFightEnd = StringField('secondFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	thirdFightStart = StringField('thirdFightStart', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	thirdFightEnd = StringField('thirdFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	fourthFightStart = StringField('fourthFightStart', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	fourthFightEnd = StringField('fourthFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	fifthFightStart = StringField('fifthFightStart', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	fifthFightEnd = StringField('fifthFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
 	filename = StringField('filename', validators=[DataRequired()])
