@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from functiontest import function
 from form import RegistrationForm, LoginForm, inputForm, splitForm
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
 import time
 import json
 
@@ -19,8 +19,8 @@ import json
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 app.config["CACHE_TYPE"] = "null"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+#db = SQLAlchemy(app)
 
 #class Card(db.Model):
  #   id = db.Column(db.Integer, primary_key=True)
@@ -57,9 +57,13 @@ def login():
     cardID = search[0].id
     ##Pulls the backdrop image path from TMDb
     backdropLink = search[0].backdrop_path
+    print(backdropLink)
     originalPath = 'https://image.tmdb.org/t/p/original'
-    directBackdrop = originalPath + backdropLink
-
+    if not backdropLink:
+        directBackdrop = '000000'
+    else:
+        directBackdrop = 'url(' + originalPath + backdropLink +')'
+    
     ##Creating datafrom for Fight info from pulled results table from Wikiscraper
     soupInfo = BeautifulSoup(html, 'lxml')
 
