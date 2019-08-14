@@ -1042,6 +1042,7 @@ input[type="text"], textarea {
 
 input, select, textarea{
     color: #00CC00;
+    background: #000000;
 }
 
 textarea:focus, input:focus {

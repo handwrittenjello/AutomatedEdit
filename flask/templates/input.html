@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form action="split" method="POST">
+    {{ form.hidden_tag() }}
+    <section id="fh5co-home" data-section="home" style=";" data-stellar-background-ratio="0.5">
+        <div class="gradient"></div>
+        <div class="container">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center">
+                            <h1 class="to-animate">Please Input the Event Type and Number</h1>
+                            <h2 class="to-animate">
+                                <div>
+                                     <select name="EventType">
+                                      <option value="ppv">PPV</option>
+                                      <option value="fightNight">Fight Night</option>
+                                      <option value="espn">ESPN</option>
+                                    </select> 
+                                    {% if form.cardNumber.errors %}
+                                        {{ form.cardNumber(placeholder='Card')}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.cardNumber.errors %}
+                                                <span>{{ error }} </span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.cardNumber(placeholder='Card') }}
+                                    {% endif %}
+                                    <input type = "submit" class = "btn" value="Submit">
+                                </div>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </form>
+{% endblock content %}

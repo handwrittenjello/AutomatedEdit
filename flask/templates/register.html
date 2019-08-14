@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="content-section">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+					<legend class="border-bottom mb-4">Join Today{{ inputForm.cardNumber.data }}</legend>
+					<div class="form-group">
+						{{ form.username.label(class="form-control-label") }}
+						{{ form.username(class="form-control form control-lg") }}
+					</div>
+					<div class="form-group">
+						{{ form.email.label(class="form-control-label") }}
+						{{ form.email(class="form-control form control-lg") }}
+					</div>
+					<div class="form-group">
+						{{ form.password.label(class="form-control-label") }}
+						{{ form.password(class="form-control form control-lg") }}
+					</div>
+					<div class="form-group">
+						{{ form.confirm_password.label(class="form-control-label") }}
+						{{ form.confirm_password(class="form-control form control-lg") }}
+					</div>
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit(class="btn btn-outline-info") }}
+			</div>
+		</form>
+		
+
+{% endblock content %}
