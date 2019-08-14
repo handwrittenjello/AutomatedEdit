@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+    {{ form.hidden_tag() }}
 
 <section id="fh5co-home" data-section="home" style="background-image: url({{ directBackdrop }});" data-stellar-background-ratio="0.5">
         <div class="gradient"></div>
@@ -56,7 +57,7 @@
                     {{ form.firstFightStart(placeholder="First Fight Start")}}</li>
                     {{ form.firstFightEnd(placeholder="First Fight End")}}</li>
                     {{ form.secondFightStart(placeholder="Second Fight Start")}}</li>
-                    {{ form.secondFightStart(placeholder="Second Fight End")}}</li>
+                    {{ form.secondFightEnd(placeholder="Second Fight End")}}</li>
                     {{ form.thirdFightStart(placeholder="Third Fight Start")}}</li>
                     {{ form.thirdFightEnd(placeholder="Third Fight End")}}</li>
                     {{ form.fourthFightStart(placeholder="Fourth Fight Start")}}</li>
