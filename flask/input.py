@@ -109,7 +109,8 @@ def login():
         search = movie.search(card)
         #print(card)
     #print(search)
-    #print(search[0].id)
+    print(search[0].id)
+    pd.set_option('max_colwidth',100)
     ##Selects first card from results
     cardID = search[0].id
     ##Pulls the backdrop image path from TMDb
@@ -168,6 +169,7 @@ def login():
     dfInfo = dfInfo.replace("\xa0",' ', regex=True)
     posterString = (dfInfo.Poster.to_string(index=False))
     ##Removing Characters from Poster String
+    print(poster)
     posterString = posterString[16:-1]
     dateString = (dfInfo.Date.to_string(index=False))
     venueString = (dfInfo.Venue.to_string(index=False))
