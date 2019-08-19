@@ -5,10 +5,12 @@ Project for automating editing down MMA Videos and creating scripts that make my
 ## MKVSplitter
 This tool pulls data from the UFC PPV Fight Card that the user inputs and displays the main card results, location and even pulls the backdrop image and displays it as the background while you enter your split times.
 
-## Front Banner
-![Front Page Banner](https://res.cloudinary.com/handwrittenjello/image/upload/v1565476624/Front_Page_Banner.png "Front Page Banner")
+Start the 
+## Card Information Input
 
-## User Input Page
+![Front Page Banner](https://res.cloudinary.com/handwrittenjello/image/upload/v1565807832/Input_Page.png "Front Page Banner")
+
+## Fight Input Page
 ![User Input Page](https://res.cloudinary.com/handwrittenjello/image/upload/v1565476624/Data_Entry_Page.png "User Input Page")
 
 ## Prerequisites
@@ -29,8 +31,8 @@ Python 3
 
 ## How to use MKV Split
 1. Move .mkv file to /flask
-2. Run MKVSplit.py
-3. Enter the card number and MKVSplit.py will pull the card information
+2. Run Input.py
+3. Enter the card number and MKVSplit will pull the card information
 4. Navigate to localhost:5000
 5. Enter Filename in the input field
 6. Enter the times of the fights into the user input (hhmmss)
