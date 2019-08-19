@@ -40,4 +40,7 @@ class splitForm(FlaskForm):
 	fourthFightEnd = StringField('fourthFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
 	fifthFightStart = StringField('fifthFightStart', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
 	fifthFightEnd = StringField('fifthFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	sixthFightStart = StringField('sixthFightStart', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+	sixthFightEnd = StringField('sixthFightEnd', validators=[DataRequired(), Length(min=6, max=6, message='Time must be 6 numbers')])
+
 	filename = StringField('filename', validators=[DataRequired()])
