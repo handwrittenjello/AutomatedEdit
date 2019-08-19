@@ -32,13 +32,18 @@ Python 3
 ## How to use MKV Split
 1. Move .mkv file to /flask
 2. Run Input.py
-3. Enter the card number and MKVSplit will pull the card information
-4. Navigate to localhost:5000
-5. Enter Filename in the input field
-6. Enter the times of the fights into the user input (hhmmss)
-7. Hit submit!
-8. MKVSPlit will now run MKVMerge inthe background with the perscribed timeslots
-9. The files will be renamed based on the fightcard information with the naming convention UFC (Card) - (Winner) vs (Loser)
+	-At the bottom of the page, the previous 15 cards are displayed
+	For:
+	-PPV: Enter the ppv number `241`
+	-UFC on ESPN: enter the name of the card as it appears `Covington vs. Lawler`
+	-UFC Fight Night: enter the name of the card as it appears `de Randamie vs. Ladd`
+3. Enter the times of the fights into the user input (hhmmss)
+4. Enter the filename of the card
+5. Hit submit!
+6. MKVSPlit will now run MKVMerge inthe background with the perscribed timeslots
+7. The files will be renamed based on the fightcard information with the naming convention UFC (Card) - (Winner) vs (Loser)
+
+
 
 
 # Batch Transcoding
