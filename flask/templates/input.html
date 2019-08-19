@@ -12,11 +12,7 @@
                             <h1 class="to-animate">Please Input the Event Type and Number</h1>
                             <h2 class="to-animate">
                                 <div>
-                                     <select name="EventType">
-                                      <option value="ppv">PPV</option>
-                                      <option value="fightNight">Fight Night</option>
-                                      <option value="espn">ESPN</option>
-                                    </select> 
+                                     {{ form.cardNumberSelect  }}
                                     {% if form.cardNumber.errors %}
                                         {{ form.cardNumber(placeholder='Card')}}
                                         <div class="invalid-feedback">
