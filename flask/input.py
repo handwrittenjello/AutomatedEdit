@@ -27,8 +27,48 @@ def register():
     if form.validate_on_submit():
         flash(f'Data Sent for {form.cardNumber.data}!', 'success')
         return redirect(url_for('split'))
+    website_url = requests.get('https://en.wikipedia.org/wiki/List_of_UFC_events')
+    html = website_url.content
+
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html, 'lxml')
+
+    eventTable = soup.find('table', id = 'Past_events')
+
+    listNumber = []
+    listEventNumber = []
+    listDate = []
+    listVenue = []
+    listLocation = []
+    listAttendance = []
+    listRef = []
+
+    for row in eventTable.findAll('tr'):
+        cells=row.findAll('td')
+        if len(cells) == 7:
+            listNumber.append(cells[0].find(text=True))
+            listEventNumber.append(cells[1].find(text=True))
+            listDate.append(cells[2].find(text=True))
+            listVenue.append(cells[3].find(text=True))
+            listLocation.append(cells[4].find(text=True))
+            listAttendance.append(cells[5].find(text=True))
+            listRef.append(cells[6].find(text=True))
+
+
+    import pandas as pd
+    df=pd.DataFrame(listNumber, columns=['List Number'])
+    df['Event'] = listEventNumber
+    df['Date'] = listDate
+    df['Venue'] = listVenue
+    df['Location'] = listLocation
+    df['Attendance'] = listAttendance
+    df['Ref'] = listRef
+    df = df.replace('\n','', regex=True)
+    df = df.drop(columns=['List Number', 'Ref'])
+    df = df.head(15)
+    print (df)
     
-    return render_template('input.html', form=form)
+    return render_template('input.html', form=form, tables=[df.to_html(classes='data',header='true')], titles=df.columns.values)
 def form():
     card = request.form(inputForm.cardNumber)
     cardType = request.form(inputForm.cardNumberSelect)
