@@ -36,5 +36,5 @@ f = open('chapter.txt','w+')
 i = 1
 while i <= listLength:
 	#print('CHAPTER0' + str(i))
-	f.write("CHAPTER0%d=%s\r\nCHAPTER0%dNAME=%s\r\n" % (i,startTimes[i-1],i,titles[i-1]))
+	f.write("CHAPTER0%d=%s\nCHAPTER0%dNAME=%s\n" % (i,startTimes[i-1],i,titles[i-1]))
 	i += 1
