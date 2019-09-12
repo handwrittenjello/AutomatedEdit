@@ -80,11 +80,11 @@ driver = webdriver.Chrome()
 driver.implicitly_wait(20 )
 driver.get('https://app.plex.tv/desktop#')
 wait = WebDriverWait(driver, 10)
-element = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div/div/div[2]/div[3]/button[3]')))
+element = wait.until(EC.element_to_be_clickable((By.XPATH, ' //*[@id="plex"]/div[2]/div/div/div[2]/div/button[3]/span[2]')))
 
 
 
-driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div/div[2]/div[3]/button[3]').click()
+driver.find_element_by_xpath('//*[@id="plex"]/div[2]/div/div/div[2]/div/button[3]/span[2]').click()
 driver.find_element_by_name('email').send_keys(email)
 driver.find_element_by_name('password').send_keys(pwd)
 driver.find_element_by_xpath('//*[@id="plex"]/div[2]/div/div/div[2]/form/button').click()
