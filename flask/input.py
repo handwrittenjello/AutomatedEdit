@@ -379,12 +379,12 @@ def foo():
         renameOriginFour = card+'split-008.mkv'
         renameOriginFive = card+'split-010.mkv'
         renameOriginSix = card+'split-012.mkv'
-        renameDestOne = 'UFC on ESPN: ' + cardTable + ' - ' + fightOneWinner + ' vs ' + fightOneLoser + '.mkv'
-        renameDestTwo = 'UFC on ESPN: ' + cardTable + ' - ' + fightTwoWinner + ' vs ' + fightTwoLoser + '.mkv'
-        renameDestThree = 'UFC on ESPN: ' + cardTable + ' - ' + fightThreeWinner + ' vs ' + fightThreeLoser + '.mkv'
-        renameDestFour = 'UFC on ESPN: ' + cardTable + ' - ' + fightFourWinner + ' vs ' + fightFourLoser + '.mkv'
-        renameDestFive = 'UFC on ESPN: ' + cardTable + ' - ' + fightFiveWinner + ' vs ' + fightFiveLoser + '.mkv'
-        renameDestSix = 'UFC on ESPN: ' + cardTable + ' - ' + fightSixWinner + ' vs ' + fightSixLoser + '.mkv'
+        renameDestOne = 'UFC on ESPN ' + cardTable + ' - ' + fightOneWinner + ' vs ' + fightOneLoser + '.mkv'
+        renameDestTwo = 'UFC on ESPN ' + cardTable + ' - ' + fightTwoWinner + ' vs ' + fightTwoLoser + '.mkv'
+        renameDestThree = 'UFC on ESPN ' + cardTable + ' - ' + fightThreeWinner + ' vs ' + fightThreeLoser + '.mkv'
+        renameDestFour = 'UFC on ESPN ' + cardTable + ' - ' + fightFourWinner + ' vs ' + fightFourLoser + '.mkv'
+        renameDestFive = 'UFC on ESPN ' + cardTable + ' - ' + fightFiveWinner + ' vs ' + fightFiveLoser + '.mkv'
+        renameDestSix = 'UFC on ESPN ' + cardTable + ' - ' + fightSixWinner + ' vs ' + fightSixLoser + '.mkv'
 
 
         
@@ -438,12 +438,12 @@ def foo():
         renameOriginFour = card+'split-008.mkv'
         renameOriginFive = card+'split-010.mkv'
         renameOriginSix = card+'split-012.mkv'
-        renameDestOne = 'UFC Fight Night: ' + cardTable + ' - ' + fightOneWinner + ' vs ' + fightOneLoser + '.mkv'
-        renameDestTwo = 'UFC Fight Night: ' + cardTable + ' - ' + fightTwoWinner + ' vs ' + fightTwoLoser + '.mkv'
-        renameDestThree = 'UFC Fight Night: ' + cardTable + ' - ' + fightThreeWinner + ' vs ' + fightThreeLoser + '.mkv'
-        renameDestFour = 'UFC Fight Night: ' + cardTable + ' - ' + fightFourWinner + ' vs ' + fightFourLoser + '.mkv'
-        renameDestFive = 'UFC Fight Night: ' + cardTable + ' - ' + fightFiveWinner + ' vs ' + fightFiveLoser + '.mkv'
-        renameDestSix = 'UFC Fight Night: ' + cardTable + ' - ' + fightSixWinner + ' vs ' + fightSixLoser + '.mkv'
+        renameDestOne = 'UFC Fight Night ' + cardTable + ' - ' + fightOneWinner + ' vs ' + fightOneLoser + '.mkv'
+        renameDestTwo = 'UFC Fight Night ' + cardTable + ' - ' + fightTwoWinner + ' vs ' + fightTwoLoser + '.mkv'
+        renameDestThree = 'UFC Fight Night ' + cardTable + ' - ' + fightThreeWinner + ' vs ' + fightThreeLoser + '.mkv'
+        renameDestFour = 'UFC Fight Night ' + cardTable + ' - ' + fightFourWinner + ' vs ' + fightFourLoser + '.mkv'
+        renameDestFive = 'UFC Fight Night ' + cardTable + ' - ' + fightFiveWinner + ' vs ' + fightFiveLoser + '.mkv'
+        renameDestSix = 'UFC Fight Night ' + cardTable + ' - ' + fightSixWinner + ' vs ' + fightSixLoser + '.mkv'
 
 
         
