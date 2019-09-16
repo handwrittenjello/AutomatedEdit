@@ -142,6 +142,7 @@ def login():
     tableFutureCard = []
     ##Pulling data from cells
     tdInfo = infoTable.findAll('td')
+    print(tdInfo)
     poster.append(tdInfo[0].find(text=True))
     promotion.append(tdInfo[1].find(text=True))
     date.append(tdInfo[2].find(text=True))
