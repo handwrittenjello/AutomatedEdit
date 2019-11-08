@@ -32,8 +32,8 @@ jobs:
       run: |
         pip install pytest
         pytest
-    - name: Start Input.py
-      run: |
-        python flask/input.py
+#    - name: Start Input.py
+#      run: |
+#        python flask/input.py
         
         
