@@ -33,4 +33,7 @@ jobs:
         pip install pytest
         pytest
     - name: Start Input.py
+      run: |
         python /flask/input.py
+        
+        
