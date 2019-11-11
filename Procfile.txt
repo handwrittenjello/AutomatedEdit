@@ -1,1 +1,1 @@
-web: gunicorn flask.input.py -b0.0.0.0.0:8000
+web: python flask.input.py
