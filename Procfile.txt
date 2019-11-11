@@ -1,1 +1,1 @@
-web: /flask/input.py
+web: gunicorn /flask/input.py
