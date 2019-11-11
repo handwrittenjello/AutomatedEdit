@@ -1,1 +1,1 @@
-web: gunicorn /flask/input.py
+web: gunicorn input:app
