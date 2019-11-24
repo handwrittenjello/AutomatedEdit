@@ -75,7 +75,7 @@ if diffValue:
     diffValue = diffValue[:-8]
     print('The following competitor has been added' +
           diffValue)
-    push = pb.push_note("Competitor has been added", "This is the body")
+    push = pb.push_note("Competitor has been added", diffValue)
     
 else:
     print('No Competitors have been added')
