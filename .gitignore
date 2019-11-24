@@ -106,3 +106,7 @@ venv.bak/
 .mypy_cache/
 
 .ds_store
+
+# Cron Job
+OGBracket.md
+newBracket.md
