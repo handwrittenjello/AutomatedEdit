@@ -9,7 +9,7 @@ from pushbullet import Pushbullet
 
 cwd = os.getcwd()
 
-pb = Pushbullet('o.1KwoYNtz1JnCkmfS4Xn6xuKxudks5SdA')
+#pb = Pushbullet('o.1KwoYNtz1JnCkmfS4Xn6xuKxudks5SdA')
 
 
 website_url = requests.get(
@@ -75,7 +75,7 @@ if diffValue:
     diffValue = diffValue[:-8]
     print('The following competitor has been added' +
           diffValue)
-    push = pb.push_note("Competitor has been added", diffValue)
+    #push = pb.push_note("Competitor has been added", diffValue)
     
 else:
     print('No Competitors have been added')
