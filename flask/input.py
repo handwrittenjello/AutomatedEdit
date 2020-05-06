@@ -25,7 +25,7 @@ app.config["CACHE_TYPE"] = "null"
 def register():
     form = inputForm()  
     if form.validate_on_submit():
-        flash(f'Data Sent for {form.cardNumber.data}!', 'success')
+        #flash(f'Data Sent for {form.cardNumber.data}!', 'success')
         return redirect(url_for('split'))
     website_url = requests.get('https://en.wikipedia.org/wiki/List_of_UFC_events')
     html = website_url.content
