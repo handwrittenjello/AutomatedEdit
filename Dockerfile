@@ -26,4 +26,4 @@ RUN pip3 install --upgrade pip setuptools \
     && cd /opt/source-code/ \
     && pip3 install -r  requirements.txt
 
-ENTRYPOINT FLASK_APP=/opt/source-code/flask/input.py flask run --host=0.0.0.0
+ENTRYPOINT FLASK_APP=/opt/source-code/flask/input.py flask run
