@@ -28,7 +28,7 @@ pre-commit==1.20.0
 py==1.8.0
 PyTweening==1.0.3
 pytz==2019.1
-PyYAML==5.1.2
+PyYAML==5.4
 requests==2.22.0
 requests-oauthlib==1.2.0
 scenedetect==0.5.1.1
