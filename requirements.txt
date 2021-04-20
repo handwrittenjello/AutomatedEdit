@@ -25,7 +25,7 @@ pandas
 pbr==5.4.1
 pluggy==0.13.0
 pre-commit==1.20.0
-py==1.8.0
+py==1.10.0
 PyTweening==1.0.3
 pytz==2019.1
 PyYAML==5.1.2
